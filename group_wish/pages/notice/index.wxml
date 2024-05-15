@@ -1,0 +1,18 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view wx:if="{{noticeList.length > 0}}">
+    <!-- <view wx:for="{{noticeList}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+    <image mode="widthFix" src="{{item}}" style="width: 100%;" class="d-block"></image>
+    </view> -->
+    <view class="reward-list">
+      <block  wx:for="{{noticeList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+        <view class="reward-column" data-id="{{item.id}}" data-name="{{item.name}}" bind:tap="goToDetail">
+          <view class="column-text column-title">{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view wx:else class="card-empty">
+    <text>暂无公告</text>
+  </view>
+</view>

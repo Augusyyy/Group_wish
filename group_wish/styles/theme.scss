@@ -1,0 +1,16 @@
+@import "variables";
+page{
+  height: 100%;
+  --button-info-background-color:#{$primary};
+  --button-info-border-color:#{$primary};
+  background-color: #F6F6F6;
+}
+button {
+  width: 100%!important;
+  text-align: center;
+}
+.inline-btn{
+  .van-button{
+    width: auto!important;
+  }
+}

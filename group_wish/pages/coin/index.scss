@@ -1,0 +1,78 @@
+.fight-view {
+  height: 100vh;
+}
+
+.home-bg {
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat: repeat;
+  // overflow: auto;
+}
+
+.coin-body {
+  z-index: 1;
+  margin: 0 20px;
+
+  .body-line {
+    border-bottom: solid 1px #dddddd;
+    position: relative;
+
+    .body-title {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+  }
+
+  .rank-top {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .title1 {
+    width: 50px;
+    text-align: center;
+  }
+
+  .title2 {
+    left: 100px;
+  }
+
+  .title3 {
+    right: 10px;
+    width: 60px;
+    text-align: center;
+  }
+
+  .t3-color {
+    color: #ff6ea4;
+    font-weight: 500;
+    font-size: 22px;
+  }
+
+  .body-rank {
+    text-align: center;
+  }
+
+  .coin-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: solid 2px #ff6ea4;
+    display: flex;
+  }
+
+  .coin-name {
+    position: absolute;
+    left: 60px;
+    width: 100px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .body-item {
+    display: block;
+  }
+}

@@ -1,0 +1,54 @@
+<view class="compose-bg">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view>
+    <image mode="widthFix" src="/images/compose/head1.jpg" style="width: 100%;" class="d-block"></image>
+  </view>
+  <view class="compose-mid">
+    <image class="mid-head d-block" mode="widthFix" src="/images/compose/my1.png"></image>
+    <image class="mid-back d-block" mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_14244440.png"></image>
+    <view>
+      <image class="mid-btn d-block" mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_14230420.png" bind:tap="compoundCard"></image>
+      <image class="ani-img" animation="{{animation1}}" mode="widthFix" src="/images/ani/1.png"></image>
+      <image class="ani-img" animation="{{animation2}}" mode="widthFix" src="/images/ani/7.png"></image>
+      <image class="ani-img" animation="{{animation3}}" mode="widthFix" src="/images/ani/2.png"></image>
+      <image class="ani-img" animation="{{animation4}}" mode="widthFix" src="/images/ani/8.png"></image>
+      <image class="ani-img" animation="{{animation5}}" mode="widthFix" src="/images/ani/3.png"></image>
+      <image class="ani-img" animation="{{animation6}}" mode="widthFix" src="/images/ani/9.png"></image>
+      <image class="ani-img" animation="{{animation7}}" mode="widthFix" src="/images/ani/4.png"></image>
+      <image class="ani-img" animation="{{animation8}}" mode="widthFix" src="/images/ani/10.png"></image>
+      <image class="ani-img" animation="{{animation9}}" mode="widthFix" src="/images/ani/5.png"></image>
+      <image class="ani-img" animation="{{animation10}}" mode="widthFix" src="/images/ani/11.png"></image>
+      <image class="ani-img" animation="{{animation11}}" mode="widthFix" src="/images/ani/6.png"></image>
+    </view>
+    <view wx:for="{{groupBtnMap}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+      <view class="compose-{{idx}}" bind:tap="deleteCard" data-info="{{item}}" data-idx="{{idx}}">
+        <image style="width: 100px;" class="d-block" mode="widthFix" src="/images/compose/group.png"></image>
+        <view hidden="{{!item.box.id}}" class="compose-select">
+          <card value="{{item.box.value}}" count="-1" show-status="{{false}}"></card>
+        </view>
+      </view>
+    </view>
+    <image mode="widthFix" src="/images/compose/head2.jpg" style="width: 110%;" class="d-block"></image>
+    <image mode="widthFix" class="compose-jwe" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11331475.png" bind:tap="jewePop"></image>
+    <view class="jew-text">增加100%累计</view>
+    <image hidden="{{!jeweId}}" mode="widthFix" class="compose-jwe compose-jwe-buy" catch:tap="deleteJewel" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11335154.png"></image>
+    <image mode="widthFix" class="compose-pool" src="/images/compose/pool.png" bind:tap="goToPrizes"></image>
+  </view>
+  <view class="compose-foot">
+    <image class="foot-head d-block" mode="widthFix" src="/images/compose/my.png"></image>
+    <image mode="widthFix" src="/images/compose/head3.png" style="width: 100%;" class="d-block"></image>
+    <view class="foot-box">
+      <view class="box">
+        <van-row gutter="10">
+          <van-col span="6" wx:for="{{cardsMap}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+            <card value="{{item.value}}" count="{{item.count}}" show-status="{{false}}" custom-top="{{idx > 4 ? true : false}}" bind:tap="addCard" data-info="{{item}}" data-idx="{{idx}}"></card>
+          </van-col>
+          <van-col span="6">
+            <card count="{{jewelData.length}}" jewel="1" show-status="{{false}}" bind:tap="addJewel" custom-top="{{true}}"></card>
+          </van-col>
+        </van-row>
+      </view>
+    </view>
+  </view>
+</view>
+<popup overlay-visiable="{{jeweVisible}}" page-type="{{pageType}}" coupon-data="{{couponData}}" gift-data="{{giftData}}" bind:compoentfunc="jeweBuy"></popup>

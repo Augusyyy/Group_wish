@@ -1,0 +1,16 @@
+{
+  "name": "wechat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "August",
+  "license": "ISC",
+  "dependencies": {
+    "@lucky-canvas/mini": "^0.0.7",
+    "@vant/weapp": "^1.10.23",
+    "moment": "^2.29.4"
+  }
+}

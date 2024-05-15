@@ -1,0 +1,16 @@
+<view>
+    <view  wx:if="{{steps.length}}" class="step-wrap">
+        <view class="sw-item {{index=== 0 ? 'active' : ''}}"  wx:for="{{steps}}" wx:for-item="step" wx:key="index">
+            <view class="sw-icon">
+                <van-icon  name="checked" color="#0e478c" size="30rpx"/>
+            </view>
+            <van-cell  use-label-slot>
+                <view slot="title">{{step.member.name}}</view>
+                <view slot="label">{{step.dipanCode}}</view>
+                <view>积分：{{step.point}}</view>
+                <view>实际撤销积分：{{step.revokePoint}}</view>
+            </van-cell>
+        </view>
+    </view>
+    <van-empty description="暂无撤销信息" wx:else/>
+</view>

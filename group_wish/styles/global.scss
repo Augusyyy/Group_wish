@@ -1,0 +1,181 @@
+@import "variables";
+
+//颜色
+//$colorMap : ( white : thite, red : $red, blue : $blue, link : $colorLink, hint : $color6 );
+$colorMap : (-yellow $yellow ) ( -white  $white ) (-red   $red) (-pink   $pink) (-blue  $blue) (-purple  $purple)  (-orange $orange ) (-green $green) (-title $title ) (-sub-title $subTitle ) (-two-title $text-3 ) (-hint $text-4 );
+@each $colorKey, $colorValue in $colorMap {
+  .text#{$colorKey}{
+    color: $colorValue!important;
+  }
+}
+
+$bgColorMap : ( -white  $white ) (-red   $red) (-transparent   transparent) (-blue  $blue) (-disabled $text-5) (-grey $bgGrey);
+@each $bgColorKey, $bgColorValue in $bgColorMap {
+  .bg#{$bgColorKey}{
+    background-color: $bgColorValue!important;
+  }
+}
+
+//align
+$textAlignMap : left center right;
+@each $textAlignItem in $textAlignMap {
+  .text-#{$textAlignItem}{
+    text-align: $textAlignItem;
+  }
+}
+
+$positionMap : absolute relative fixed;
+@each $positionItem in $positionMap {
+  .p-#{$positionItem}{
+    position: $positionItem!important;
+  }
+}
+
+$displayMap : block inline-block table table-cell;
+@each $displayItem in $displayMap {
+  .d-#{$displayItem}{
+    display: $displayItem;
+  }
+}
+
+$weightMap :normal bold bolder;
+@each $wItem in $weightMap {
+  .font-#{$wItem}{
+    font-weight: $wItem;
+  }
+}
+
+//font
+$fontMap : ( 12  12 ) ( 13  13 ) ( 14  14 )  ( 16  16 )  ( 18  18 ) ( 20  20 ) ( 22  22 ) ( 24  24 ) ( 30  30 ) ( 36  36 ) ;
+@each $fontKey,$fontValue in $fontMap {
+  .font-#{$fontKey}{
+    font-size: $fontValue*2rpx!important;
+  }
+}
+
+//border
+$vAlignMap : baseline sub super text-top text-bottom middle top bottom;
+@each $vAlignItem in $vAlignMap {
+  .vertical-align-#{$vAlignItem}{
+    vertical-align: $vAlignItem;
+  }
+}
+
+$bordersMap : top right bottom left;
+@each $borderItem in $bordersMap {
+  .border-#{$borderItem}{
+    border-#{$borderItem}: 1rpx solid $borderColor;
+  }
+}
+
+$lineMap : (2 2) (3 3);
+@each $lk,$lv in $lineMap {
+  .line-#{$lk}{
+    overflow: hidden; /*超出隐藏*/
+    text-overflow: ellipsis; /*隐藏后添加省略号*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $lv; //想显示多少行
+    word-break: break-all;
+  }
+}
+
+
+//margin padding
+@for $i from 0 through 20{
+  $key :  $i * 5;
+  $value :  $i * 5*2rpx;
+  .p-#{$key}{
+    padding: $value;
+  }
+  .pt-#{$key}{
+    padding-top: $value;
+  }
+  .pl-#{$key}{
+    padding-left: $value;
+  }
+  .pr-#{$key}{
+    padding-right: $value;
+  }
+  .pb-#{$key}{
+    padding-bottom: $value;
+  }
+  .m-#{$key}{
+    margin: $value;
+  }
+  .mt-#{$key}{
+    margin-top: $value;
+  }
+  .ml-#{$key}{
+    margin-left: $value;
+  }
+  .mr-#{$key}{
+    margin-right: $value;
+  }
+  .mb-#{$key}{
+    margin-bottom: $value;
+  }
+}
+
+//border
+$wpMap : (25 25%) (50 50%) (75 75%) (100 100%) (60 60%);
+@each $wpK,$wpV in $wpMap {
+  .wp-#{$wpK}{
+    width: $wpV;
+  }
+}
+
+.v-hidden{
+  visibility: hidden;
+}
+
+.gone{
+  display: none;
+}
+
+.box-shadow{
+  box-shadow: 0 0 20rpx -16rpx $text-4;
+}
+.fl{
+  float: left;
+}
+.fr{
+  float:right;;
+}
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+//背景选中
+.selection-none{
+  ::selection{
+    background:transparent;
+  }
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.bg-red-linear{
+  background: linear-gradient(to right, #FF6b1c, #FF2318);
+}
+.text-link{
+  color: $primary;
+  display: inline-block;
+  font-size: 28rpx;
+  cursor: pointer;
+}
+
+.text-ellipsis{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-ellipsis-2{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

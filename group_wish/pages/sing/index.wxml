@@ -1,0 +1,18 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view wx:if="{{singList.length > 0}}">
+    <scroll-view scroll-y="{{true}}" style="height: 100vh;"  bindscrolltolower="loadList">
+      <view class="sing-list">
+        <block  wx:for="{{singList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+          <sing-card avatar="{{item.member.avatar}}" cur-id="{{item.id}}" name="{{item.name}}" member="{{item.member.name}}" part-string="{{item.partString ? item.partString : '任意'}}" end-time="{{item.endTime}}" end-timestamp="{{item.endTimestamp}}" is-me="{{item.isMe}}" type="{{item.type}}" amount="{{item.amount}}" residue="{{item.residue}}" btn="{{1}}" detail="{{1}}" show-btn="{{false}}"></sing-card>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <view wx:else class="card-empty">
+    <text>暂无歌单</text>
+  </view>
+  <view class="sing-btn">
+    <van-button lang="zh_CN" bind:tap="publishSing" round block>我要点歌</van-button>
+  </view>
+</view>

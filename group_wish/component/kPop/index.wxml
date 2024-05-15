@@ -1,0 +1,28 @@
+<van-popup show="{{ kShow }}" custom-class="k-pop" overlay-style="background-color:rgba(0,0,0,0.9)">
+  <view class="k-box">
+    <view class="k-title {{start ? '' : 'k-hide'}}">
+      <image mode="aspectFill" class="line line-1" style="width: 3px;height: 5px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <image mode="aspectFill" class="line line-2" style="width: 3px;height: 15px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <image mode="aspectFill" class="line line-3" style="width: 3px;height: 10px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <image mode="aspectFill" class="line line-4" style="width: 3px;height: 5px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <image mode="aspectFill" class="line line-5" style="width: 3px;height: 10px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <text>正在录音</text>
+      <image mode="aspectFill" class="line line-5" style="width: 3px;height: 10px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <image mode="aspectFill" class="line line-4" style="width: 3px;height: 5px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <image mode="aspectFill" class="line line-3" style="width: 3px;height: 10px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <image mode="aspectFill" class="line line-2" style="width: 3px;height: 15px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+      <image mode="aspectFill" class="line line-1" style="width: 3px;height: 5px;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_22513378.png"></image>
+    </view>
+    <view class="k-btn" bind:tap="kDone" wx:if="{{start}}">
+      <text>唱完了</text>
+    </view>
+    <view class="k-btn-ready" wx:else>
+      <image wx:if="{{touch}}" mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231218_1644389.png"></image>
+      <image bind:tap="kStart" capture-bind:touchstart="kTouchS" wx:else mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231218_15470293.png"></image>
+    </view>
+    <view class="k-cancel" bind:tap="kCancel">
+      <image mode="aspectFill" style="width: 15px;height: 15px;display: inline-block;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_23253157.png"></image>
+      <view style="display: inline-block;margin-left: 10px;">取消</view>
+    </view>
+  </view>
+</van-popup>

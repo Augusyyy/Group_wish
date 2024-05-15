@@ -1,0 +1,8 @@
+{
+    "component": true,
+    "usingComponents": {
+      "van-divider": "@vant/weapp/divider/index",
+      "van-popup": "@vant/weapp/popup/index",
+      "k-pop": "/component/kPop/index"
+    }
+}

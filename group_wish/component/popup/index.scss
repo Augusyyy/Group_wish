@@ -1,0 +1,207 @@
+.overlay-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  
+  .overlay-body {
+    position: relative;
+    z-index: 99999;
+  }
+
+  .overlay-bg {
+    height: 380px;
+  }
+
+  .overlay-title {
+    position: absolute;
+    font-size: 25px;
+  }
+
+  .card-title {
+    top: 110px;
+    font-size: 40px;
+    color: #ff7386;
+    font-weight: 600;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .card-name {
+    top: 165px;
+    font-size: 20px;
+    color: #ff7386;
+    font-weight: 500;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .card-desc {
+    top: 230px;
+    font-size: 10px;
+    color: #000000;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+  }
+
+  .card-desc-mess {
+    top: 235px;
+    font-size: 14px;
+    color: #000000;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+  }
+
+  .card-desc-1 {
+    top: 250px;
+    font-size: 10px;
+    color: #000000;
+    font-weight: 500;
+    text-align: center;
+    width: 100%;
+  }
+
+  .res-title {
+    top: 40px;
+    font-size: 30px;
+    color: #ff7386;
+    font-weight: 500;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .res-title-1 {
+    top: 75px;
+    font-size: 35px;
+    color: #ff7386;
+    font-weight: 600;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .res-title-2 {
+    top: 85px;
+    font-size: 35px;
+    color: #ff7386;
+    font-weight: 600;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .res-title-desc {
+    top: 117px;
+    font-size: 12px;
+    color: #ff7386;
+    font-weight: 600;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .res-title-desc-1 {
+    top: 135px;
+    font-size: 14px;
+    color: #ff0059;
+    font-weight: 600;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .res-title-desc-2 {
+    top: 155px;
+    font-size: 12px;
+    color: #ff0059;
+    font-weight: 600;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  .res-title-desc-3 {
+    top: 175px;
+    font-size: 19px;
+    color: #ff0059;
+    font-weight: 700;
+    left: 50%;
+    transform: translate(-50%);
+    text-align: center;
+  }
+
+  .img-desc {
+    top: 205px;
+    font-size: 14px;
+    color: #ff7386;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+  }
+
+  .res-image {
+    width: 50px;
+    height: 50px !important;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 150px;
+  }
+
+  .title {
+    top: 150px;
+    left: 45px;
+  }
+
+  .title-1 {
+    top: 190px;
+    left: 45px;
+  }
+
+  text {
+    color: #ff7386;
+    font-weight: 700;
+  }
+
+  .overlay-tips {
+    position: absolute;
+    color: #a3896c;
+    width: 100%;
+    text-align: center;
+    // left: 50%;
+    // transform: translate(-50%);
+  }
+
+  .tips {
+    top: 250px;
+  }
+
+  .tips-1 {
+    top: 275px;
+  }
+
+  .submit-btn {
+    position: absolute;
+    height: 50px;
+    width: 60%;
+    left: 50%;
+    bottom: 30px;
+    transform: translate(-50%);
+  }
+
+  .btn-text {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .close-btn {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 30px;
+    left: 50%;
+    transform: translate(-50%);
+  }
+}

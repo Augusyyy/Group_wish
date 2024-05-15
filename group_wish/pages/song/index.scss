@@ -1,0 +1,108 @@
+.card-empty {
+  text-align: center;
+  padding-top: 80px;
+  color: #999999;
+  font-size: 20px;
+}
+
+.home-bg {
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.sing-btn {
+  // margin: 20rpx 40rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  background-color: #ffffff;
+  padding: 15px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+
+  .van-button--round {
+    background-color: #ff7386;
+    color: #ffffff;
+    border: solid 1px #ff7386;
+    // bottom: 20px;
+  }
+}
+
+.sing-empty {
+  width: 140px;
+  // height: 160px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 300px;
+}
+
+.sing-list {
+  padding: 50px 10px 70px 10px;
+
+  .detail-box {
+    height: 70px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 15px 0;
+    position: relative;
+    padding: 10px 20px;
+
+    .avatar {
+      width: 40px;
+      display: inline-block;
+    }
+
+    .play {
+      width: 80px;
+      padding: 3px 5px;
+      background-color: #fff1f3;
+      text-align: center;
+      color: #ff7386;
+      border-radius: 5px;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+    }
+
+    .reward {
+      width: 80px;
+      padding: 3px 5px;
+      background-color: #fff1f3;
+      text-align: center;
+      color: #ff7386;
+      border-radius: 5px;
+      position: absolute;
+      right: 120px;
+      bottom: 10px;
+    }
+  }
+
+  .sing-box {
+    height: 100px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin: 15px 0;
+    position: relative;
+    padding: 10px 20px;
+
+    .sing-box-btn {
+      width: 80px;
+      padding: 3px 5px;
+      background-color: #fff1f3;
+      text-align: center;
+      color: #ff7386;
+      border-radius: 5px;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+    }
+
+    .sing-box-btn-dis {
+      background-color: #dddddd;
+      color: #ffffff;
+    }
+  }
+}

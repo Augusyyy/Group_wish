@@ -1,0 +1,35 @@
+<scroll-view scroll-y="{{true}}" class="fight-view"  bindscrolltolower="loadList">
+<view class="bg-grey nav-box">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+
+  <image mode="widthFix" style="width: 100%;position: relative;z-index: 2;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231207_10322561.png"></image>
+
+  <view class="coin-body">
+    <view class="body-line" style="height: 40px;">
+      <view class="body-title title1">排名</view>
+      <view class="body-title title2">用户名称</view>
+      <view class="body-title title3">心愿币</view>
+    </view>
+    <block wx:for="{{topList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+      <view class="body-line" style="height: 60px;">
+        <view wx:if="{{item.rank <= 3}}">
+          <view class="body-title title1">
+            <image src="/images/icons/c{{item.rank}}.png" style="width: 30px;height: 30px;"></image>
+            <view class="rank-top">{{item.rank}}</view>
+          </view>
+        </view>
+        <view wx:else>
+          <view class="body-title title1">
+            {{item.rank}}
+          </view>
+        </view>
+        <view class="body-title title2">
+          <image class="coin-avatar" src="{{item.avatar}}"></image>
+          <view class="coin-name">{{item.name}}</view>
+        </view>
+        <view class="body-title title3 t3-color">{{item.coin}}</view>
+       </view>
+    </block>
+  </view>
+</view>
+</scroll-view>

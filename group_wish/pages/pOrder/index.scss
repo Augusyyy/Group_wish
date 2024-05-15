@@ -1,0 +1,31 @@
+page {
+  background-color: #f7f7f7;
+}
+
+.order-list {
+  padding: 60px 10px 10px 10px;
+
+  .order-box {
+    height: 120px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  .box-title {
+    padding: 10px 15px;
+    color: #333333;
+    font-size: 14px;
+    border-bottom: solid 1px #f3f3f3;
+  }
+
+  .box-content {
+    padding: 10px 15px;
+    color: #333333;
+    font-size: 14px;
+  }
+
+  .box-status {
+    float: right;
+  }
+}

@@ -1,0 +1,57 @@
+.card-empty {
+  text-align: center;
+  padding-top: 50px;
+  color: #999999;
+  font-size: 20px;
+}
+
+.auth-btn{
+  margin: 40rpx;
+  position: absolute;
+  bottom: 300rpx;
+  left: 0;
+  right: 0;
+  // color: #ffffff;
+  // background-color: #ff7386;
+}
+
+.van-button--default {
+  color: #ffffff !important;
+  background-color: #ff7386 !important;
+}
+
+.home-bg {
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+.reward-list {
+  padding: 5px 20px;
+
+  .reward-column {
+    height: 60px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    position: relative;
+
+    .column-text {
+      display: inline-block;
+    }
+
+    .column-title {
+      margin-left: 15px;
+      font-size: 20px;
+    }
+
+    .column-type {
+      position: absolute;
+      right: 10px;
+      bottom: 5px;
+      font-size: 12px;
+    }
+  }
+}

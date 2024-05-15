@@ -1,0 +1,128 @@
+.home-bg {
+  height: 100%;
+  background-size: 100% 100%;
+  background-repeat: repeat;
+  // overflow: auto;
+}
+
+.fight-body {
+  position: relative;
+  text-align: center;
+  background-size: contain;
+  background-repeat: repeat;
+  z-index: 1;
+  margin-top: -23px;
+
+  .top-body {
+    position: relative;
+    width: 33vw;
+    display: inline-block;
+    height: 205px;
+  }
+
+  .top2-img {
+    width: 100%;
+    position: absolute;
+    right: -25px;
+    // top: 60px;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  .top1-img {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    // top: 50px;
+    bottom: 0;
+  }
+
+  .top3-img {
+    width: 100%;
+    position: absolute;
+    left: -25px;
+    // top: 75px;
+    z-index: 1;
+    bottom: 0;
+  }
+}
+
+.fight-top {
+  // position: fixed;
+  // left: 50%;
+  // transform: translate(-50%);
+  width: 85%;
+}
+
+.fight-bar {
+  // position: fixed;
+  // left: 50%;
+  // transform: translate(-50%);
+  // margin-top: 178px;
+  margin-left: 10px;
+  width: 95%;
+  z-index: 10;
+  display: block;
+  position: relative;
+}
+
+.fight-view {
+  height: 100vh;
+  // width: 100%;
+  // background-color: #ffffff;
+  // margin-top: -7px;
+}
+
+.top-list {
+  height: 60px;
+  position: relative;
+  background-color: #ffffff;
+  border-bottom: solid 1px #eeeeee;
+
+  .rank {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .name {
+    position: absolute;
+    left: 110px;
+    top: 50%;
+    transform: translate(0, -50%);
+    display: flex;
+    width: 100px;
+  }
+
+  .fight {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 120px;
+    // border: solid 2px #ff6ea4;
+    // border-radius: 5px;
+  }
+
+  .f-left {
+    display: inline-block;
+    background-color: #ff6ea4;
+    color: #ffffff;
+    border: 2px solid #ff6ea4;
+    border-radius: 5px;
+    width: 40px;
+    padding: 0 5px;
+  }
+
+  .f-right {
+    display: inline-block;
+    border-top: solid 2px #ff6ea4;
+    border-right: solid 2px #ff6ea4;
+    border-bottom: solid 2px #ff6ea4;
+    width: 65px;
+    margin-left: -5px;
+    color: #ff6ea4;
+  }
+}

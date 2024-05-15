@@ -1,0 +1,25 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view wx:if="{{activityList.length > 0}}">
+    <!-- <view wx:for="{{activityList}}" wx:key="idx" wx:for-index="idx" wx:for-item="item" style="position: relative;">
+      <image mode="widthFix" src="{{item.url}}" style="width: 100%;" class="d-block"></image>
+      <view class="auth-btn">
+        <van-button wx:if="{{item.status === 0}}" lang="zh_CN" bind:tap="activityJoin" data-info="{{item}}" round block>点击报名</van-button>
+        <van-button wx:else lang="zh_CN" round block disabled>已报名</van-button>
+      </view>
+    </view> -->
+    <view class="reward-list">
+        <block  wx:for="{{activityList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+          <view class="reward-column" data-id="{{item.id}}" data-name="{{item.name}}" bind:tap="goToDetail">
+            <view class="column-text column-title">{{item.name}}</view>
+            <view wx:if="{{item.type === 0}}" class="column-type" style="color: #cccccc;">未开始</view>
+            <view wx:elif="{{item.type === 1}}" class="column-type" style="color: #ff7386;">进行中</view>
+            <view wx:if="{{item.type === 2}}" class="column-type" style="color: #cccccc;">已结束</view>
+          </view>
+        </block>
+      </view>
+  </view>
+  <view wx:else class="card-empty">
+    <text>暂无活动</text>
+  </view>
+</view>

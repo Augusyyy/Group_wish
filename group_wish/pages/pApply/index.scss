@@ -1,0 +1,152 @@
+/* pages/cards/index.wxss */
+.apply-bg {
+  width: 100%;
+  // height: 100vh;
+  // position: fixed;
+  background-color: #fdeef4;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  overflow: auto;
+  padding: 0 0 25px 0;
+}
+
+.card-box {
+  position: relative;
+  min-height: 300px;
+  background-color: #ffffff;
+  margin: -60px 10px 10px 10px;
+  padding-bottom: 25px;
+  border-radius: 10px;
+  z-index: 2;
+
+  .card-header {
+    padding: 20px 20px 15px 20px;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .p-header {
+      width: 4px;
+      height: 18px;
+      background-color: #ff7386;
+      display: inline-block;
+      position: relative;
+      margin-right: 10px;
+    }
+
+    .p-header-text {
+      font-size: 20px;
+    }
+  }
+
+  .card-content {
+    // margin: 0 15px;
+    padding: 0 10px;
+    // background-color: #f9f9f9;
+    min-height: 230px;
+    border-radius: 10px;
+
+    .van-cell {
+      margin: 10px 0;
+      line-height: 40px;
+      border-radius: 10px;
+      border: none;
+      background-color: #f9f9ff !important;
+    }
+
+    .pub-input {
+      .van-field__body {
+        margin-top: 8px;
+      }
+    }
+  
+    .van-hairline--top-bottom::after {
+      border: none;
+    }
+
+    .pp-url {
+      min-height: 150px;
+      background-color: #f9f9ff;
+      border-radius: 10px;
+      padding: 15px;
+    }
+
+    .text-color {
+      color: #646566;
+    }
+
+    .upload-img {
+      width: 100%;
+      height: 110px;
+    }
+
+    .img-body {
+      position: relative;
+
+      .close {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        right: -5px;
+        top: -5px;
+      }
+    }
+
+    .card-title {
+      position: relative;
+      line-height: 30px;
+    }
+
+    .card-sub {
+      margin-left: 25px;
+      font-size: 13px;
+      color: #aaaaaa;
+    }
+
+    .card-group {
+      padding-left: 25px;
+      padding-top: 10px;
+    }
+
+    .img-icon {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      top: 5px;
+    }
+
+    .card-img {
+      position: relative;
+    }
+
+    .card-text {
+      position: absolute;
+      color: #ff7386;
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      font-size: 30px;
+      top: 5px;
+    }
+  }
+}
+
+.apply-desc {
+  margin: 10px;
+}
+
+.auth-btn{
+  padding: 0 15px;
+  margin-top: 40px;
+
+  .van-button--round {
+    background-color: #ff7386;
+    color: #ffffff;
+    border: solid 1px #ff7386;
+    height: 50px;
+    font-size: 20px;
+    font-weight: normal;
+  }
+}

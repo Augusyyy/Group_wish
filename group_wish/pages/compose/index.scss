@@ -1,0 +1,145 @@
+/* pages/syn/index.wxss */
+.compose-bg {
+  height: 100%;
+}
+
+.home-bg {
+  height: 100%;
+  background-size: 100% 70%;
+  background-repeat: no-repeat;
+}
+
+.compose-mid {
+  position: relative;
+
+  .compose-1 {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%);
+  }
+
+  .compose-2 {
+    position: absolute;
+    left: 5%;
+    top: 38%;
+  }
+
+  .compose-3 {
+    position: absolute;
+    right: 5%;
+    top: 38%;
+  }
+  .compose-4 {
+    position: absolute;
+    left: 15%;
+    top: 60%;
+  }
+  .compose-5 {
+    position: absolute;
+    right: 15%;
+    top: 60%;
+  }
+  
+  .mid-head {
+    position: absolute;
+    width: 80%;
+    left: 50%;
+    top: 60px;
+    transform: translate(-50%);
+  }
+
+  .mid-back {
+    position: absolute;
+    width: 80%;
+    left: 48%;
+    top: 48%;
+    transform: translate(-50%,-50%);
+  }
+
+  .mid-btn {
+    position: absolute;
+    width: 30%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 10;
+  }
+
+  .ani-img {
+    position: absolute;
+    width:50px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 2;
+  }
+
+  .compose-jwe {
+    position: absolute;
+    width: 100px;
+    bottom: 25px;
+    left: 20px;
+  }
+
+  .jew-text {
+    position: absolute;
+    bottom: 0;
+    left: 18px;
+    color: #ff7386;
+  }
+
+  .compose-jwe-buy {
+    width: 65px;
+    left: 35px;
+    bottom: 37px;
+  }
+
+  .compose-pool {
+    position: absolute;
+    width: 100px;
+    bottom: 25px;
+    right: 20px;
+  }
+}
+
+.compose-foot {
+  position: relative;
+
+  .foot-head {
+    position: absolute;
+    width: 50%;
+    left: 50%;
+    top: 30px;
+    transform: translate(-50%);
+  }
+
+  .foot-box {
+    top: 60px;
+    position: absolute;
+    min-height: 300px;
+    width: 100%;
+  }
+
+  .box {
+    background-color: #ffffff;
+    // min-height: 250px;
+    margin: 25px;
+    border: solid 1px #000000;
+    border-radius: 10px;
+    padding: 20px 15px;
+  }
+}
+
+.compose-select {
+  position: absolute;
+  width: 80%;
+  top: 0;
+  left: 49%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+
+  text {
+    font-size: 20px !important;
+  }
+}

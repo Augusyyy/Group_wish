@@ -1,0 +1,143 @@
+<view class="home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_14014160.jpg);">
+<!-- <view class="home-bg"> -->
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <!-- <image class="back-img" mode="widthFix" src="/images/lottery/back.jpg"></image> -->
+  <view class="ld-content">
+      <lucky-wheel
+              id="myLuckyDialog"
+              width="{{wheelWidth}}"
+              height="{{wheelHeight}}"
+              prizes="{{prizes}}"
+              blocks="{{blocks}}"
+              buttons="{{buttons}}"
+              defaultStyle="{{defaultStyle}}"
+              defaultConfig="{{defaultConfig}}"
+              bindstart="startCallback"
+              bindend="endCallback"
+      />
+      <view class="ld-top">
+        <view hidden="{{curTab === 2}}">
+          <image bind:tap="tabClick" data-tab="1" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240108/142105.png" mode="aspectFit"></image>
+          <image bind:tap="tabClick" data-tab="2" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240108/142137.png" mode="aspectFit"></image>
+        </view>
+        <view hidden="{{curTab === 1}}">
+          <image bind:tap="tabClick" data-tab="1" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240108/142155.png" mode="aspectFit"></image>
+          <image bind:tap="tabClick" data-tab="2" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240108/142221.png" mode="aspectFit"></image>
+        </view>
+      </view>
+      <view class="ldc-count">剩余心愿抽奖次数：<text style="color: #ff7386">{{freeResidueCount}}次</text></view>
+      <!-- （每周10次，还可用<text style="color: #ff7386">{{freeCount}}</text>次） -->
+      <view class="ldc-count count-1">剩余魔法抽奖次数：<text style="color: #ff7386">{{count}}次</text></view>
+      <!-- （每日10次，还可买<text style="color: #ff7386">{{payCount}}</text>次） -->
+      <view class="ld-box">
+        <image mode="widthFix" src="/images/lottery/title1.png" class="title1-img d-block"></image>
+        <van-row gutter="10">
+          <van-col span="24">
+            <view class="text-box">
+              <view class="text-dot"></view>
+              <view class="text-line" style="top: -2px;">
+                日活跃度每天 200 以上 1 次抽奖机会
+              </view>
+              <!-- <text class="text-sp"></text> -->
+            </view>
+          </van-col>
+        </van-row>
+        <van-row gutter="10">
+          <van-col span="24">
+            <view class="text-box text-box-1" style="margin-top: 10px;">
+              <view class="text-dot"></view>
+              <view class="text-line text-line-1">
+                战队赛每周战力排名1-5名获得 3 次抽奖机会，5-20名2次，20名以后1次
+              </view>
+            </view>
+          </van-col>
+        </van-row>
+        <van-row gutter="10">
+          <van-col span="24">
+            <view class="text-box text-box-2" style="margin-top: 20px;">
+              <view class="text-dot"></view>
+              <view class="text-line" style="top: -4px;">
+                代打战队赛，按胜利场次获得更多抽奖机会，6胜2 次，4胜以上1次 （此方法每周最多不超过3次。适用于散人组，临时补位。）
+              </view>
+            </view>
+          </van-col>
+        </van-row>
+        <van-row gutter="10">
+          <van-col span="24">
+            <view class="text-box text-box-2" style="margin-top: 35px;">
+              <view class="text-dot"></view>
+              <view class="text-line" style="top: -2px;">
+                【每周抽奖次数最多10次】
+              </view>
+            </view>
+          </van-col>
+        </van-row>
+        <van-row gutter="10">
+          <van-col span="24">
+            <view class="text-box text-box-1" style="margin-top: -5px;">
+              <view class="text-dot"></view>
+              <view class="text-line" style="top: -2px;">
+                日常战队活动参与获得。
+              </view>
+            </view>
+          </van-col>
+        </van-row>
+        <van-row gutter="10">
+          <van-col span="24">
+            <view class="text-box text-box-1" style="margin-top: 5px;">
+              <view class="text-dot"></view>
+              <view class="text-line" style="top: -2px;">
+                心愿卡封顶50元，不可转赠。
+              </view>
+            </view>
+          </van-col>
+        </van-row>
+      </view>
+      <view class="ld-box" style="margin-top: 40px;padding-bottom: 10px;padding-top: 30px;">
+        <image mode="widthFix" src="/images/lottery/title2.png" class="title1-img title2-img d-block"></image>
+        <van-row gutter="10">
+        <block wx:for="{{prizesMap}}"  wx:for-item="item" wx:for-index="idx" wx:key="idx">
+          <van-col span="6">
+            <view class="ld-card-box">
+              <view class="ld-card-inner">
+                <text class="ld-card-text">{{item.id}}%心愿卡</text>
+              </view>
+            </view>
+          </van-col>
+        </block>
+        </van-row>
+        <view class="ld-card-footer" style="margin-top: 10px;">抽到之日起，有效期30天</view>
+        <view class="ld-card-footer">
+          心愿卡可以累积但不可叠加使用
+        </view>
+      </view>
+  </view>
+</view>
+<popup overlay-visiable="{{jeweVisible}}" page-type="{{pageType}}" coupon-data="{{couponData}}" bind:compoentfunc="jewelLottery" coupon-mess="{{couponMess}}"></popup>
+
+<van-overlay show="{{tenShow}}" custom-style="overflow-y:visible;z-index: 10000">
+  <view class="ten-body">
+    <view style="text-align: center;font-size: 35px;margin-bottom: 15px;color: #ff7386;font-weight: 600;">恭喜您抽中</view>
+    <van-row gutter="10">
+      <block wx:for="{{tenList}}"  wx:for-item="item" wx:for-index="idx" wx:key="idx">
+        <van-col span="8" offset="{{idx === 0 || idx === 5 ? '4' : '0'}}">
+          <view class="ten-box">
+            <image wx:if="{{item.message}}" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/145209.png" style="width: 100%;height: 130px;" mode="aspectFit"></image>
+            <image wx:else src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/145232.png" style="width: 100%;height: 130px;" mode="aspectFit"></image>
+            <view class="ten-coupon">
+              <text class="ten-value {{item.message ? 'ten-me-value' : ''}}">{{item.coupon.faceValue}}%</text>
+              <view class="ten-name {{item.message ? 'ten-me-name' : ''}}">心愿卡</view>
+              <view wx:if="{{item.message}}">
+                <view class="ten-gift">{{item.message}}</view>
+              </view>
+            </view>
+          </view>
+        </van-col>
+      </block>
+    </van-row>
+    <view style="color: #ffffff;text-align: center;margin-top: 20px;">请保存截图并联系管理员兑换</view>
+    <view class="pp-btn">
+      <van-button lang="zh_CN" bind:tap="tenClose" round block>确定</van-button>
+    </view>
+  </view>
+</van-overlay>

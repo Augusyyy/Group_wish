@@ -1,0 +1,15 @@
+{
+  "component": true,
+  "navigationBarTitleText": "少女的心愿",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#ff7b8c",
+  "usingComponents": {
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index"
+  }
+}

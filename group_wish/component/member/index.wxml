@@ -1,0 +1,30 @@
+<view class="member-box">
+  <view class="member-bar">
+    <p class="member-cancel" bind:tap="memberCancel">取消</p>
+    <p class="member-confirm" bind:tap="memberConfirm">确认</p>
+  </view>
+  <view class="search-bar">
+    <van-search
+      value="{{keyword}}"
+      label="姓名"
+      placeholder="请输入姓名搜索"
+      use-action-slot
+      bind:change="inputChange"
+    >
+      <view slot="action" bind:tap="inputSearch">搜索</view>
+    </van-search>
+  </view>
+  <van-checkbox-group value="{{memberPart}}" bind:change="onChange">
+    <van-cell-group>
+      <van-cell wx:for="{{memberList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx"
+        title="{{item.name}}"
+        clickable
+        value-class="value-class"
+        data-index="{{item.id}}"
+        bind:click="toggle"
+      >
+        <van-checkbox name="{{item.id}}" class="checkboxes-{{item.id}}"></van-checkbox>
+      </van-cell>
+    </van-cell-group>
+  </van-checkbox-group>
+</view>

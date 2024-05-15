@@ -1,0 +1,27 @@
+<view class="home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1126088.png);">
+    <div class="profile-head">
+        <div class="user-base">
+            <!-- <image class="ub-img" mode="widthFix" src="{{wxAvatar ? wxAvatar : '/images/avatar.png'}}"></image> -->
+            <button open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" style="background-color: transparent;">
+                <image class="ub-img" mode="widthFix" src="{{avatarUrl ? avatarUrl : '/images/avatar.png'}}"></image>
+            </button>
+            <view class="position">
+              <div bind:tap="userNameUpdate">{{wxName ? wxName : "微信用户"}}{{elite ? '-精英' : ''}}</div>
+            </view>
+        </div>
+    </div>
+    <view class="profile-body">
+        <van-cell-group border="{{false}}"  class="profile-cells" >
+            <block  wx:for="{{menus}}" is-link wx:for-item="menu" wx:key="name">
+                <van-cell center wx:if="{{!menu.hide}}" bind:tap="toDetail" data-info="{{menu}}" style="border-radius: 20px;">
+                    <view slot="title" class="p-box">
+                        <view class="pb-title">
+                            {{menu.name}}
+                        </view>
+                    </view>
+                    <image class="p-arrow" mode="widthFix" src="/images/icons/me_arrow.png"></image>
+                </van-cell>
+            </block>
+        </van-cell-group>
+    </view>
+</view>

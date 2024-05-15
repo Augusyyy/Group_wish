@@ -1,0 +1,103 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view wx:if="{{cS === 'audit'}}">
+    <view class="card-empty">该页面暂未开放</view>
+  </view>
+  <view wx:if="{{cS === 'other'}}">
+    <view class="pub-top">
+    <view class="top-title">定制点歌信息</view>
+    <view class="top-sub">唱歌获得心愿币打赏</view>
+  </view>
+  <form catchsubmit="publishSing" >
+  <view class="pub-box">
+    <van-cell-group>
+      <van-field
+        model:value="{{name}}"
+        name="name"
+        clearable
+        label="歌名"
+        placeholder="请输入歌名"
+        class="pub-input"
+        maxlength="20"
+      >
+      <view slot="right-icon">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231215_0040445.png" style="width: 15px;height: 15px;"></image>
+      </view>
+      </van-field>
+      <van-field
+        model:value="{{type}}"
+        label="打赏方式"
+        name="type"
+        placeholder="请选择方式"
+        readonly
+        bind:click-input="typeClick"
+      >
+        <view slot="right-icon"><van-icon name="arrow" /></view>
+      </van-field>
+      <van-field
+        model:value="{{price}}"
+        clearable
+        label="心愿币"
+        name="price"
+        type="digit"
+        placeholder="{{priceText}}"
+      >
+      <view slot="right-icon">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231214_17575093.png" style="width: 15px;height: 15px;"></image>
+      </view>
+      </van-field>
+      <van-field
+        wx:if="{{defaultType === 1}}"
+        model:value="{{total}}"
+        clearable
+        name="total"
+        type="number"
+        label="获奖人数"
+        placeholder="请输入获奖人数"
+      >
+        <view slot="right-icon"><van-icon name="friends" color="#ff7386"/></view>
+      </van-field>
+      <van-field
+        model:value="{{endTime}}"
+        label="结束时间"
+        name="endTime"
+        placeholder="请选择结束时间"
+        readonly
+        bind:click-input="timeClick"
+      >
+        <view slot="right-icon"><van-icon name="arrow" /></view>
+      </van-field>
+      <van-field
+        model:value="{{partString}}"
+        label="参与人"
+        placeholder="请选择参与人，不选默认全部"
+        readonly
+        bind:click-input="partClick"
+      >
+        <view slot="right-icon"><van-icon name="arrow" /></view>
+      </van-field>
+    </van-cell-group>
+  </view>
+  <view class="publish-btn">
+    <van-button lang="zh_CN" formType="submit" bind:tap="publishSing" round block>发布</van-button>
+  </view>
+  </form>
+  </view>
+
+  <van-popup show="{{typeShow}}" position="bottom" custom-style="height: 30%">
+    <van-picker columns="{{typeColumns}}" default-index="{{defaultType}}" show-toolbar bind:cancel="typeCancel" bind:confirm="typeConfirm"></van-picker>
+  </van-popup>
+
+  <van-popup show="{{timeShow}}" position="bottom" custom-style="height: 30%">
+    <van-datetime-picker
+      type="datetime"
+      value="{{currentTime}}"
+      bind:cancel="timeCancel"
+      bind:confirm="timeConfirm"
+    ></van-datetime-picker>
+  </van-popup>
+
+  <van-popup show="{{partShow}}" position="bottom" custom-style="height: 60%">
+    <member member-part="{{part}}" bind:cancelEvent="partCancel" bind:confirmEvent="partConfirm"></member>
+  </van-popup>
+</view>

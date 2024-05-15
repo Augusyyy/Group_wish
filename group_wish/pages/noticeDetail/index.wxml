@@ -1,0 +1,5 @@
+<view class="bg-grey nav-box" style="padding: 15px">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <image class="auth-bg" mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png"></image>
+  <rich-text class="detail-content" nodes="{{activitData.content}}"></rich-text>
+</view>

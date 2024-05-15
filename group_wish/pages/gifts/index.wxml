@@ -1,0 +1,21 @@
+<view class="home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1126088.png);">
+    
+  <view class="m-10" wx:if="{{giftsMap.length > 0}}">
+      <van-row gutter="10">
+          <van-col span="12" wx:for="{{giftsMap}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+            <view class="img-body mt-10">
+              <div class="img-use" wx:if="{{item.status > 0}}">
+                <view class="img-text">{{giftStatusMap[item.status]}}</view>
+              </div>
+              <image mode="aspectFit" src="{{item.url}}"></image>
+              <view class="img-title">{{levelMap[item.level]}}</view>
+              <view class="img-desc">{{item.name}}</view>
+              <view wx:if="{{GiftExchange[item.level] && item.status === 0}}" class="sub-btn" catch:tap="exchange" data-level="{{item.level}}" data-id="{{item.id}}">兑换</view>
+            </view>
+          </van-col>
+      </van-row>
+  </view>
+  <view wx:else class="card-empty">
+    <text>暂无奖品</text>
+  </view>
+</view>

@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "navigationBarTitleText": "少女的心愿",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#ff7b8c",
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "sing-list": "/component/singList/index",
+    "k-pop": "/component/kPop/index"
+  }
+}

@@ -1,0 +1,140 @@
+.sing-box-top {
+  margin: 0 !important;
+  border-radius: 0 !important;
+}
+
+.sing-box {
+  min-height: 140px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 10px 0;
+  position: relative;
+  padding: 20px 20px 5px 20px;
+
+  .sing-img {
+    position: absolute;
+
+    image {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+  }
+
+  .sing-content {
+    // position: absolute;
+    // left: 110px;
+    // width: 55%;
+    margin-left: 85px;
+    box-sizing: border-box;
+
+    .sing-name {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .sing-part {
+      color: #666666;
+      margin-top: 6px;
+      font-size: 12px;
+    }
+
+    .sing-part-top {
+      width: 58%;
+    }
+
+    .sing-price {
+      font-size: 12px;
+      margin-top: 10px;
+      background-color: #eeeeee;
+      color: #999999;
+      padding: 2px 10px;
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      position: absolute;
+
+      .h-line {
+        height: 8px;
+        display: inline-block;
+        width: 1px;
+        background-color: #999999;
+        margin: 0 4px;
+      }
+
+      image {
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+      }
+    }
+
+    .sing-amount {
+      color: #ff7386;
+    }
+  }
+
+  .sing-divider {
+    // position: absolute;
+    // bottom: 30px;
+    // left: 20px;
+    // right: 20px;
+  }
+
+  .sing-bottom {
+    // position: absolute;
+    // bottom: 10px;
+    position: relative;
+    bottom: 5px;
+  }
+
+  .sing-time {
+    position: absolute;
+    right: 20px;
+    bottom: 12.5px;
+    color: #999999;
+    font-size: 12px;
+  }
+
+  .sing-btn-box {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+
+    .sing-btn {
+      position: relative;
+      width: 80px;
+      height: 40px;
+      .sing-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-30%, -50%);
+        color: #ffffff;
+        width: 100%;
+        line-height: 0;
+      }
+      image {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  .sing-box-btn {
+    width: 80px;
+    padding: 3px 5px;
+    background-color: #fff1f3;
+    text-align: center;
+    color: #ff7386;
+    border-radius: 5px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .sing-box-btn-dis {
+    background-color: #dddddd;
+    color: #ffffff;
+  }
+}

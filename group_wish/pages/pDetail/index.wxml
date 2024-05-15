@@ -1,0 +1,200 @@
+<view class="nav-box">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view wx:if="{{cS === 'audit'}}">
+    <view class="card-empty">该页面暂未开放</view>
+  </view>
+  <view wx:if="{{cS === 'other'}}">
+    <view class="detail-content">
+    <view class="detail-top">
+      <view class="top">
+        <view>陪玩币</view>
+        <view class="top-price">{{cashback}}</view>
+      </view>
+      <view class="top">
+        <view>心愿币</view>
+        <view class="top-price">{{cash}}</view>
+      </view>
+      <view class="top-mi"></view>
+      <!-- <image class="top-img" mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240103/165248.png"></image>
+      <view class="top-amount">{{amount}}</view>
+      <view class="top-sub">
+      陪玩心愿币
+        <text class="sub-desc">只可用于陪玩消费</text>
+      </view> -->
+    </view>
+    <view style="margin-top: 10px;">
+      <van-row gutter="10">
+        <van-col span="12">
+          <view class="detail-info">
+            <van-field
+              model:value="{{ myRank }}"
+              placeholder="我的段位"
+              clearable
+              disabled="{{curStatus !== 99 && curStatus !== 0 ? true : false}}"
+              maxlength="6"
+              border="{{ false }}"
+            />
+          </view>
+        </van-col>
+        <van-col span="12">
+          <view class="detail-info">
+            <van-field
+              model:value="{{ orderTime }}"
+              name="endTime"
+              placeholder="预约时间"
+              readonly
+              border="{{false}}"
+              bind:click-input="timeClick"
+            >
+              <view slot="right-icon"><van-icon name="arrow" /></view>
+            </van-field>
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+    <view style="margin-top: 10px;">
+      <van-row gutter="10">
+        <van-col span="12">
+          <view class="detail-info">
+            <van-field
+              model:value="{{ games }}"
+              placeholder="游戏局数"
+              clearable
+              type="number"
+              disabled="{{curStatus !== 99 && curStatus !== 0 ? true : false}}"
+              border="{{ false }}"
+              
+            >
+              <view slot="right-icon"><text>局</text></view>
+            </van-field>
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+    <view class="card-header">
+      <div class="p-header"></div>
+      <div class="p-header-text">我的陪玩</div>
+    </view>
+    <block  wx:for="{{ppData}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+      <view class="detail-box" id="detail_box_{{item.id}}">
+        <van-row gutter="10">
+          <van-col span="5">
+            <image class="pp-avatar" src="{{item.member.avatar}}" mode="widthFix"></image>
+          </van-col>
+          <van-col span="18">
+            <view class="pp-info">
+              <view class="pp-name">{{item.member.name}}（{{item.peak}}）
+                <div wx:if="{{item.totalGame && item.totalGame > 0}}" class="total-game">{{item.totalGame}}局{{item.totalGame*item.price}}</div>
+                <div wx:elif="{{games > 0}}" class="total-game" style="margin-right: 10px;">预计：{{games}}局{{games*item.price}}</div>
+              </view>
+              <view class="pp-hero">英雄：{{item.heroes}}</view>
+              <view class="pp-rank">
+                位置：{{item.topLaneInfo ? '对抗路' + ' | ' : ''}}
+                {{item.botLaneInfo ? '发育路' + ' | ' : ''}}
+                {{item.midLaneInfo ? '中路' + ' | ' : ''}}
+                {{item.jungleInfo ? '打野' + ' | ' : ''}}
+                {{item.supportInfo ? '辅助' + ' | ' : ''}}
+              </view>
+            </view>
+          </van-col>
+          <van-col span="1">
+            <view class="pp-close" bind:tap="ppClose" data-id="{{item.id}}" wx:if="{{curStatus === 99 || curStatus === 0}}">
+              <!-- <van-icon name="cross" /> -->
+              <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240108/165217.png" mode="widthFix" style="width: 10px;"></image>
+            </view>
+          </van-col>
+        </van-row>
+        <view class="order-status">
+          <text class="order-dot {{ppMap[item.orderStatus].style}}-d"></text>
+          <text class="order-name {{ppMap[item.orderStatus].style}}">{{ppMap[item.orderStatus].name}}</text>
+        </view>
+      </view>
+    </block>
+    <view class="detail-add" bind:tap="goChoose" wx:if="{{curStatus === 99 || curStatus === 0}}">
+      <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240103/173858.png" mode="widthFix"></image>
+      <text style="margin-left: 20px;color: #999999;">添加陪玩</text>
+    </view>
+  </view>
+  <view class="pp-btn">
+    <van-button wx:if="{{curStatus === 99}}" lang="zh_CN" bind:tap="ppOrder" round block>立即预约</van-button>
+    <view wx:elif="{{curStatus === 0}}">
+      <van-row gutter="10">
+        <van-col span="12">
+          <van-button lang="zh_CN" bind:tap="ppOrderUpdate" round block>确定</van-button>
+        </van-col>
+        <van-col span="12">
+          <van-button lang="zh_CN" bind:tap="ppOrderCancel" round block type="primary">取消订单</van-button>
+        </van-col>
+      </van-row>
+    </view>
+    <van-button wx:elif="{{curStatus === 1}}" lang="zh_CN" bind:tap="orderDone" round block>立即结账（合计：{{totalAmount}}）</van-button>
+    <text wx:else style="color: #999999;">{{statusStr}}</text>
+  </view>
+  </view>
+</view>
+
+<van-popup show="{{timeShow}}" position="bottom" custom-style="height: 30%">
+  <van-datetime-picker
+    type="datetime"
+    value="{{currentTime}}"
+    bind:cancel="timeCancel"
+    bind:confirm="timeConfirm"
+  ></van-datetime-picker>
+</van-popup>
+
+<van-popup show="{{weShow}}" custom-style="border-radius: 15px;overflow-y:visible">
+  <view class="we-body">
+    <image mode="aspectFill" class="we-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240104/223951.png"></image>
+    <view style="display: flex;justify-content: center;">
+      <view class="we-sub" style="width: 55vw;">本次陪玩结账<text style="color: #ff7386;"> {{totalAmount}} </text>心愿币</view>
+    </view>
+    <view style="display: flex;justify-content: center;">
+      <view class="we-sub" style="width: 55vw;">当前账户余额<text style="color: #ff7386;"> {{amount}} </text>心愿币</view>
+    </view>
+    <view class="we-btn">
+      <text bind:tap="reSubmit">结算</text>
+    </view>
+    <view class="we-close" bind:tap="weClose">
+      <image src="../../images/compose/close.png" mode="aspectFill"></image>
+    </view>
+  </view>
+</van-popup>
+
+<van-popup show="{{cShow}}" custom-style="border-radius: 15px;overflow-y:visible">
+  <view class="we-body">
+    <image mode="aspectFill" class="we-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240104/223951.png"></image>
+    <view style="display: flex;justify-content: center;">
+      <view class="we-sub" style="width: 55vw;">{{cStrTitle}}</view>
+    </view>
+    <view style="display: flex;justify-content: center;">
+      <view class="we-sub" style="width: 55vw;">{{cStrText}}</view>
+    </view>
+    <view style="display: flex;justify-content: center;">
+      <view class="we-sub" style="width: 55vw;">{{cStrEnd}}</view>
+    </view>
+    <view class="we-btn">
+      <text bind:tap="cSubmit">确定</text>
+    </view>
+  </view>
+</van-popup>
+
+<van-popup show="{{cancelShow}}" custom-style="border-radius: 15px;overflow-y:visible">
+  <view class="we-body">
+    <image mode="aspectFill" class="we-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240104/223951.png"></image>
+    <view style="display: flex;justify-content: center;">
+      <view class="we-sub" style="width: 55vw;">取消订单</view>
+    </view>
+    <view style="display: flex;justify-content: center;">
+      <view class="we-sub" style="width: 55vw;">取消后将自动扣除<text style="color: #ff7386;">10</text>心愿币</view>
+    </view>
+    <view style="display: flex;justify-content: center;">
+      <view class="we-sub" style="width: 55vw;">每天最多可取消<text style="color: #ff7386;">2</text>次订单</view>
+    </view>
+    <view class="we-btn">
+      <text bind:tap="ccSubmit">确定</text>
+    </view>
+    <view class="we-close" bind:tap="ccClose">
+      <image src="../../images/compose/close.png" mode="aspectFill"></image>
+    </view>
+  </view>
+</van-popup>

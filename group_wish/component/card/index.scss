@@ -1,0 +1,46 @@
+/* component/card/index.wxss */
+.card-img {
+  position: relative;
+
+  .badge {
+    position: absolute;
+    top: -20px;
+    left: 15px;
+
+    image {
+      width: 35px;
+    }
+
+    text {
+      position: inherit;
+      left: 50%;
+      transform: translate(-50%);
+      font-size: 13px;
+      font-weight: 600;
+    }
+  }
+}
+
+.card-text {
+  position: absolute;
+  color: #ff7386;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  font-size: 21px;
+  top: 3px;
+  // top: 50%;
+  // transform: translate(0, -90%);
+}
+
+.card-use-color {
+  color: #e9c1c6;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-25 {
+  margin-top: 25px;
+}

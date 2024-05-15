@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+miniprogram_npm
+node_modules
+images/car
+images/discover
+.DS_Store

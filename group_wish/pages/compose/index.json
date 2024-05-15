@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "enablePullDownRefresh": false,
+  "navigationBarTitleText": "少女的心愿",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#ff7b8c",
+  "usingComponents": {
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "card": "/component/card/index",
+    "popup": "/component/popup/index"
+  }
+}

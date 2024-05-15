@@ -1,0 +1,85 @@
+{
+    "pages": [
+        "pages/home/index",
+        "pages/compose/index",
+        "pages/activity/index",
+        "pages/auth/index",
+        "pages/profile/index",
+        "pages/draw/index",
+        "pages/cards/index",
+        "pages/notice/index",
+        "pages/poster/index",
+        "pages/user/index",
+        "pages/gifts/index",
+        "pages/reward/index",
+        "pages/prizes/index",
+        "pages/detail/index",
+        "pages/fight/index",
+        "pages/noticeDetail/index",
+        "pages/coin/index",
+        "pages/welfare/index",
+        "pages/apply/index",
+        "pages/sing/index",
+        "pages/publish/index",
+        "pages/recorder/index",
+        "pages/singDetail/index",
+        "pages/song/index",
+        "pages/active/index",
+        "pages/kk/index",
+        "pages/sign/index",
+        "pages/ksub/index",
+        "pages/activityGroup/index",
+        "pages/banner/index",
+        "pages/pp/index",
+        "pages/pApply/index",
+        "pages/pChoose/index",
+        "pages/pDetail/index",
+        "pages/pOrder/index",
+        "pages/ppDetail/index",
+        "pages/pAmount/index"
+    ],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
+    "requiredPrivateInfos": [
+        "chooseAddress",
+        "chooseLocation",
+        "getLocation"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "少女的心愿",
+        "backgroundColor": "#222222",
+        "backgroundTextStyle": "light",
+        "enablePullDownRefresh": false
+    },
+    "useExtendedLib": {
+        "weui": true
+    },
+    "tabBar": {
+        "custom": false,
+        "color": "#cccccc",
+        "selectedColor": "#5a3840",
+        "backgroundColor": "#ffffff",
+        "list": [
+            {
+                "pagePath": "pages/home/index",
+                "text": "心愿活动",
+                "iconPath": "/images/menu/home.png",
+                "selectedIconPath": "/images/menu/home_active.png"
+            },
+            {
+                "pagePath": "pages/profile/index",
+                "text": "我的心愿",
+                "iconPath": "/images/menu/me.png",
+                "selectedIconPath": "/images/menu/me_active.png"
+            }
+        ]
+    },
+    "style": "v2",
+    "plugins": {},
+    "sitemapLocation": "sitemap.json"
+}

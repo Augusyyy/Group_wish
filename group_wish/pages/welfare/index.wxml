@@ -1,0 +1,71 @@
+<scroll-view scroll-y="{{true}}" class="fight-view"  bindscrolltolower="loadList">
+<view class="bg-grey nav-box we-bg">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+
+  <view class="letter-body {{letterClass[letterType]}}">
+      <image class="letter-bg" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20231220/104119.png" mode="aspectFill"></image>
+      <image bind:tap="letter" class="letter-btn {{letterBtnClass[letterType]}}" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20231220/104355.png" mode="aspectFit"></image>
+      <view class="letter-text {{textClass[textType]}} {{hideType ? 'text-hide-left' : ''}}">
+        <view>心愿各位：</view>
+        <view class="text-i-1">展信悦，见字如见面</view>
+        <view class="text-i-1">感谢你们的相伴，有大家的相伴，我们的生活变得更有意义。</view>
+        <view class="text-i-1">这一路我们也受过质疑，也遭过讽刺，但我们都慢慢完善起来，并逐渐强大。</view>
+        <view class="text-i-1">【心愿公益】 是我们一起完成的新的起点， 我们把大家抽奖的【金额】，各位赞助的【金额】，拿出一部分捐给了更多有需要的人：也许是一顿热腾腾的饭，也许是一件厚厚的新衣， 【心愿公益】 把大家的点点心光，汇聚成火炬，照亮他人前行之路。</view>
+        <view class="text-i-1">【我曾经也想过离开这世界，有了你们的光，我才继续热爱生活】</view>
+        <view class="text-i-1"> 一小步，一大步，心愿一直在前行。</view>
+        <view style="margin-left: 65px;margin-top: 20px;"> — 祝君安， 满意</view>
+      </view>
+    </view>
+
+  <view class="we-top">
+    <image mode="widthFix" style="width: 100%;position: relative;z-index: 2;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231219_22292911.png"></image>
+
+    <!-- 关闭 -->
+    <image wx:if="{{letterType === 0}}" bind:tap="letter" mode="aspectFill" class="we-letter" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231219_22380220.png"></image>
+
+    <!-- 打开时 -->
+    <image wx:if="{{letterType === 1}}" bind:tap="letter" mode="aspectFill" class="we-letter" src="{{curL1}}"></image>
+
+    <!-- 关闭时 -->
+    <image wx:if="{{letterType === 2}}" bind:tap="letter" mode="aspectFill" class="we-letter" src="{{curL2}}"></image>
+
+    <!-- 关闭 -->
+    <image wx:if="{{letterType === 3}}" bind:tap="letter" mode="aspectFill" class="we-letter" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20231219/225142.png"></image>
+  </view>
+
+  <block wx:for="{{topList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+    <van-row gutter="20" class="we-body">
+      <van-col span="9" class="we-l">
+        <image wx:if="{{item.cover}}" mode="aspectFit" src="{{item.cover}}"></image>
+        <image wx:elif="{{item.urls.length}}" mode="aspectFit" src="{{item.urls[0]}}"></image>
+      </van-col>
+      <van-col span="15" class="we-r">
+        <view>{{item.item}}</view>
+        <view class="we-font">
+          <span class="sub-title">捐赠人</span>
+          <span>{{item.name}}</span>
+        </view>
+        <view class="we-font">
+          <span class="sub-title">捐赠金额</span>
+          <span class="sub-price">{{item.price}}元</span>
+        </view>
+        <view class="we-font">
+          <span class="sub-title">捐款时间</span>
+          <span>{{item.date}}</span>
+        </view>
+        <!-- <view wx:if="{{userInfo && userInfo.team}}" class="sub-btn" bind:tap="imgView" data-url="{{item.urls}}">查看证书</view> -->
+        <view class="sub-btn" bind:tap="imgView" data-url="{{item.urls}}">查看证书</view>
+      </van-col>
+    </van-row>
+  </block>
+</view>
+</scroll-view>
+
+<van-popup show="{{ imgShow }}" closeable bind:close="imgClose">
+  <view class="img-view">
+    <view wx:for="{{curImg}}" wx:for-item="item" wx:key="idx" wx:for-index="idx" class="img-box">
+      <view class="img-text">{{idx + 1}}/{{curImg.length}}</view>
+      <image mode="aspectFit" src="{{item}}"></image>
+    </view>
+  </view>
+</van-popup>

@@ -1,0 +1,82 @@
+.auth-bg{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+}
+
+.group-head {
+  width: 100%;
+  white-space: nowrap;
+  overflow: auto;
+
+  .group-name {
+    display: inline-block;
+    width: 120px;
+    height: 30px;
+    background-color: #ffffff;
+    position: relative;
+    margin: 20px 0 20px 20px;
+    border-radius: 50px;
+    padding: 10px;
+
+    image {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+
+    text {
+      position: absolute;
+      top: 50%;
+      left: 45px;
+      transform: translate(0, -50%);
+      font-size: 13px;
+    }
+
+    .my-group {
+      color: #ff7386;
+    }
+  }
+}
+
+.group-body {
+  min-height: 70vh;
+  background-color: #ffffff;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 20px;
+  padding: 5px;
+}
+
+.group-avatar {
+  position: relative;
+  text-align: center;
+  margin: 10px;
+
+  image {
+    width: 100%;
+    height: 60px;
+    border-radius: 50%;
+  }
+
+  text {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.group-code {
+  text-align: center;
+  image {
+    width: 300px;
+    height: 300px;
+  }
+}

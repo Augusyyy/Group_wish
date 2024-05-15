@@ -1,0 +1,277 @@
+.fight-view {
+  height: 100vh;
+}
+
+.we-lay {
+  // position: absolute;
+  // width: 100vw;
+  // height: 100vh;
+  // z-index: 10;
+  // background-color: opacity(rgba(0,0,0,0.7));
+}
+
+.text-i-1 {
+  text-indent: 1em;
+}
+
+.letter-body {
+  position: absolute;
+  z-index: 10;
+  left: 70%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+
+  .letter-text {
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    width: 250px;
+    font-size: 13px;
+    opacity: 0;
+  }
+
+  .letter-bg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .letter-btn {
+    position: absolute;
+    bottom: 3%;
+    left: 49%;
+    transform: translate(-50%);
+  }
+}
+
+.text-open {
+  opacity: 1 !important;
+  transition: opacity 1s ease-in-out;
+  // animation-name: textOpen;
+  // animation-duration: 2.5s;
+  // animation-delay: 0s;
+  // animation-timing-function: linear;
+  // animation-iteration-count: 1;
+  // animation-direction: normal;
+}
+
+.letter-open {
+  left: 50%;
+  top: 50%;
+  width: 370px;
+  height: 520px;
+  animation-name: letterOpen;
+  animation-duration: 2.5s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+}
+
+.btn-open {
+  width: 80px;
+  height: 80px;
+  animation-name: btnOpen;
+  animation-duration: 2.5s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+}
+
+.btn-hide {
+  width: 0;
+  height: 0;
+  animation-name: btnHide;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+}
+
+.text-hide-left {
+  display: none;
+}
+
+.text-hide {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  // animation-name: textHide;
+  // animation-duration: 5s;
+  // animation-delay: 0s;
+  // animation-timing-function: linear;
+  // animation-iteration-count: 1;
+  // animation-direction: normal;
+}
+
+.letter-hide {
+  width: 0;
+  height: 0;
+  left: 70%;
+  top: 12%;
+  animation-name: letterHide;
+  animation-duration: 2s;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+}
+
+@keyframes btnOpen {
+  0% {
+    width: 0;
+    height: 0;
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@keyframes btnHide {
+  0% {
+    width: 80px;
+    height: 80px;
+  }
+  100% {
+    width: 0;
+    height: 0;
+  }
+}
+
+@keyframes letterOpen {
+  0% {
+    width: 0;
+    height: 0;
+    left: 70%;
+    top: 10%;
+  }
+  100% {
+    left: 50%;
+    top: 50%;
+    width: 370px;
+    height: 520px;
+  }
+}
+
+@keyframes letterHide {
+  0% {
+    left: 50%;
+    top: 50%;
+    width: 370px;
+    height: 520px;
+  }
+  100% {
+    width: 0;
+    height: 0;
+    left: 70%;
+    top: 10%;
+  }
+}
+
+// @keyframes textOpen {
+//   0% {
+//     display: none;
+//   }
+//   100% {
+//     mask: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0));
+//   }
+// }
+
+@keyframes textHide {
+  0% {
+    left: 30px;
+  }
+  100% {
+    left: 300px;
+  }
+}
+
+.we-top {
+  position: relative;
+
+  .we-letter {
+    width: 33vw;
+    height: 25vh;
+    position: absolute;
+    z-index: 9;
+    top: -20px;
+    right:13%;
+  }
+}
+
+.we-body {
+  height: 140px;
+  background-color: #ffffff;
+  margin: 10px 15px;
+  border-radius: 10px;
+  padding: 10px;
+  display: block;
+  position: relative;
+
+  .we-l {
+    image {
+      width: 100%;
+      height: 140px;
+      border-radius: 10px;
+    }
+  }
+
+  .we-r {
+    .we-font {
+      font-size: 15px;
+    }
+
+    .sub-title {
+      display: inline-block;
+      width: 80px;
+      color: #aaaaaa;
+    }
+
+    .sub-price {
+      color: #ff7386;
+    }
+
+    .sub-btn {
+      width: 80px;
+      padding: 3px 5px;
+      background-color: #fff1f3;
+      text-align: center;
+      color: #ff7386;
+      border-radius: 5px;
+      position: absolute;
+      right: 10px;
+      bottom: 10px;
+    }
+  }
+}
+
+.img-view {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  background-color: #000000;
+  overflow: auto;
+  white-space: nowrap;
+
+  .img-box {
+    position: relative;
+    display: inline-block;
+  }
+
+  .img-text {
+    position: absolute;
+    color: #ffffff;
+    left: 50%;
+    transform: translate(-50%);
+    top: 10%;
+  }
+
+  image {
+    width: 100vw;
+    height: 100vh;
+    display: inline-block;
+  }
+}

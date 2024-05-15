@@ -1,0 +1,18 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <scroll-view scroll-y="{{true}}" style="height: 100vh;"  bindscrolltolower="loadList">
+    <view class="sing-card">
+      <sing-card cur-id="{{curId}}" name="{{name}}" member="{{member}}" part-string="{{partString}}" end-time="{{endTime}}" type="{{type}}" amount="{{amount}}" residue="{{residue}}" btn="{{1}}" is-me="{{isMe === 'true' ? true : false}}" end-timestamp="{{endTimestamp}}" avatar="{{avatar}}" show-btn="{{true}}" bind:closeEvent="closeEvent"></sing-card>
+    </view>
+      <view class="sing-list">
+        <view wx:if="{{singList.length > 0}}">
+           <block  wx:for="{{singList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+            <sing-list avatar="{{item.uploader.avatar}}" memberName="{{item.uploader.name}}" url="{{item.url}}" cur-id="{{item.id}}" play="{{item.play}}" status="{{item.status}}" reward-type="{{1}}" bind:rewardSuccess="rewardSuccess" data-id="{{item.id}}" data-idx="{{idx}}" data-url="{{item.url}}" bind:playAudio="playAudio" detail="{{true}}" we-type="{{type}}" amount="{{amount}}" residue="{{residue}}" duration="{{item.duration}}" created-at="{{item.createdAt}}" my-id="{{myId}}" upload-id="{{item.uploader.id}}" k-id="{{item.member.id}}"></sing-list>
+          </block>
+        </view>
+        <view wx:else>
+          <image class="sing-empty" mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20231220/230400.png"></image>
+        </view>
+      </view>
+    </scroll-view>
+</view>

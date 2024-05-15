@@ -1,0 +1,114 @@
+<view class="nav-box apply-bg">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view class="sign-head">
+    <text>{{residue}}</text>
+    <view class="sign-my" bind:tap="goToMy">我的心愿币<van-icon name="arrow" /></view>
+    <image mode="widthFix" style="width: 100%;position: relative;z-index: 2;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_11595751.png"></image>
+  </view>
+  <view class="card-box">
+    <view class="card-header">
+      <view class="card-top {{curTab === 1 ? 'top-select' : ''}}" bind:tap="tabClick" data-cur="1">每日签到</view>
+      <view class="card-top {{curTab === 2 ? 'top-select' : ''}}" bind:tap="tabClick" data-cur="2" style="margin-left: 10px;">魔法签到</view>
+      <!-- <div class="p-header-text">每日签到</div>
+       -->
+    </view>
+    <view class="card-content">
+      <div wx:if="{{curTab === 1}}" class="p-header-sub">再签到<span class="sub-c">{{signDay - curDay}}</span>天，赠送抽卡<span class="sub-c">1</span>次</div>
+      <div wx:if="{{curTab === 2}}" class="p-header-sub magic-header">开通魔法签到，累计签满<span class="sub-c">{{magic.days ? magic.days : 30}}</span>天即可领取<span class="sub-c">30-80</span>心愿币</div>
+      <div wx-if="{{curTab === 2}}" class="p-header-sub magic-header">或陪玩币，并奖励<span class="sub-c">8</span>次心愿抽奖，每次补签将扣除<span class="sub-c">2</span>心愿币</div>
+      <view wx:if="{{curTab === 1}}">
+        <van-row gutter="10" style="margin-top: 10px;display: block;">
+          <block wx:for="{{dayList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+            <view wx:if="{{item.day < signDay - 1}}">
+              <van-col span="6">
+                <view class="img-body">
+                  <view class="img-c {{curDay === idx ? 'img-cur' : ''}} {{item.check === 'yes' ? 'img-body-yes' : ''}}">
+                    <view wx:if="{{item.check === 'not'}}" class="sign-title">第{{idx + 1}}天</view>
+                    <view wx:else class="sign-title">已签</view>
+                    <image class="sign-not" mode="aspectFill" wx:if="{{item.check === 'not'}}" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_12024635.png"></image>
+                    <view wx:else>
+                      <image class="sign-yes" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_12015268.png" mode="aspectFill"></image>
+                      <text wx:if="{{dayDetail[idx + 1]}}" class="sign-yes-text">+{{dayDetail[idx + 1]}}</text>
+                    </view>
+                  </view>
+                </view>
+              </van-col>
+            </view>
+            <view wx:else>
+              <van-col span="12">
+                <view class="img-body">
+                  <view class="img-c {{curDay === idx ? 'img-cur' : ''}} {{item.check === 'yes' ? 'img-body-yes' : ''}}">
+                    <view wx:if="{{item.check === 'not'}}" class="sign-title">第{{idx + 1}}天</view>
+                    <view wx:else class="sign-title">已签</view>
+                    <image class="sign-not" style="width: 120px;" mode="aspectFill" wx:if="{{item.check === 'not'}}" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_13152581.png"></image>
+                    <viwe wx:else>
+                      <image class="sign-yes" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_12015268.png" mode="aspectFill"></image>
+                      <text wx:if="{{dayDetail[idx + 1]}}" class="sign-yes-text">+{{dayDetail[idx + 1]}}</text>
+                    </viwe>
+                  </view>
+                </view>
+              </van-col>
+            </view>
+          </block>
+        </van-row>
+      </view>
+      <view wx:else>
+        <view class="magic-box" style="width: {{mW}}px !important;"></view>
+        <view class="magic-box" style="width: {{mW}}px !important;"></view>
+        <block wx:for="{{magic.details}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+          <view class="magic-box" style="width: {{mW}}px !important;">
+            <view bind:tap="magicBc" data-id="{{item.id}}" data-day="{{item.day}}" data-status="{{item.status}}" class="magic-content {{item.day === 1 ? 'img-cur' : ''}} {{item.status !== 0 ? 'img-body-yes' : ''}}">
+              <image wx:if="{{item.status === 0}}" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_12024635.png" mode="aspectFill" style="width: 30px;height: 35px;"></image>
+              <view wx:if="{{item.status === 1}}">
+                <view class="magic-s">已签</view>
+                <view class="magic-s magic-c">+{{item.value}}</view>
+              </view>
+              <view wx:if="{{item.status === 2}}">
+                <view class="magic-bc">补</view>
+                <view class="magic-s magic-c">+{{item.value}}</view>
+              </view>
+            </view>
+            <view class="magic-b">{{item.key}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{curTab === 1}}" style="text-align: center;" class="p-header-sub">当前已累计奖励：<span class="sub-c">{{signTotal}}</span>心愿币 <span class="sub-c">{{ signPTotal}}</span>陪玩币</view>
+  <view wx:if="{{curTab === 2 && magic && magic.status === 1 }}" style="text-align: center;" class="p-header-sub">当前已累计奖励：<span class="sub-c">{{magic.total ? magic.total : 0}}</span>心愿币 <span class="sub-c">{{ magic.totalP ? magic.totalP : 0}}</span>陪玩币</view>
+  <view class="auth-btn" wx:if="{{curTab === 1 || (curTab === 2 && magic && magic.status === 1)}}">
+    <view class="van-btn" bind:tap="signIn">
+      点击立即签到
+    </view>
+  </view>
+  <view class="auth-btn" wx:if="{{curTab === 2 && (!magic || !magic.status)}}">
+    <view class="van-btn" bind:tap="magicPass">
+      点击立即开通（50心愿币/月）
+    </view>
+  </view>
+</view>
+
+<van-popup show="{{resShow}}" custom-class="sign-pop">
+  <view class="sign-bg">
+    <image mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_16303084.png"></image>
+  </view>
+  <view class="sign-top" wx:if="{{resMsg}}">
+    <view class="top-title">{{curTab === 1 ? '今日祝福，满意祝你' : '今日满意请你吃'}}</view>
+    <view class="top-msg">{{resMsg}}</view>
+  </view>
+  <view class="sign-center">
+    <text wx:if="{{resMsg}}" class="c-text">签到成功，恭喜您获得</text>
+    <text wx:else class="c-text">签到成功</text>
+    <image mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_16420855.png"></image>
+    <view wx:if="{{resPrice}}" class="sign-message">
+      <text class="m-text">+{{resPrice}}{{resType}}</text>
+      <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_12015268.png"></image>
+    </view>
+    <view wx:else class="sign-message">
+      <text class="m-text">未获得额外奖励</text>
+    </view>
+  </view>
+  <view class="sign-btn" bind:tap="resClose">
+    <image mode="aspectFit" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_16364545.png"></image>
+  </view>
+</van-popup>

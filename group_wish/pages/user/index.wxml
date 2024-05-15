@@ -1,0 +1,38 @@
+
+<view>
+  <image class="auth-bg" mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png"></image>
+    <form catchsubmit="save" >
+    <van-cell-group >
+        <van-cell title="头像" center>
+            <button id="avatar_btn" class="avatar-wrap fr" style="width: 105vw !important;z-index: 9999;position: relative;right: -50px;" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+                <image style="float: right;position: relative;right: 50px;" class="avatar" mode="widthFix" src="{{avatar ? avatar : '/images/avatar.png'}}"></image>
+            </button>
+        </van-cell>
+        <van-field
+                id="name"
+                name="name"
+                value="{{ name }}"
+                label=""
+                bind:change="onInputChange"
+                bind:blur="onChooseName"
+                placeholder="请输入昵称"
+                input-align="right"
+        >
+            <view slot="label">
+                昵称
+            </view>
+        </van-field>
+    </van-cell-group>
+
+    <view class="p-10">
+        <view class=" mt-50">
+            <van-button loading="{{loading}}" formType="submit" type="primary" round class="yl-btn" bind:tap="save">提交</van-button>
+        </view>
+    </view>
+    </form>
+    <view class="p-fix-bottom">
+        <view class=" m-20">
+            <van-button  round plain class="yl-btn dark" bind:tap="logout">退出登录</van-button>
+        </view>
+    </view>
+</view>

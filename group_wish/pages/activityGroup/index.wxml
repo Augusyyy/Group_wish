@@ -1,0 +1,35 @@
+<!-- style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);" -->
+<!-- home-bg -->
+<view class="bg-grey nav-box">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <image class="auth-bg" mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_21352445.png"></image>
+  <view class="group-head">
+    <block wx:for="{{activityData}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+      <view class="group-name" wx:if="{{curGroup === idx}}" data-idx="{{idx}}" bind:tap="tabClick">
+        <image mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231217_21405657.png"></image>
+        <text class="my-group">第{{groupData[idx]}}组{{myGroup === idx ? '（我的）' : ''}}</text>
+      </view>
+      <view wx:else class="group-name group-name-non" data-idx="{{idx}}" bind:tap="tabClick">
+        <image mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231218_11220142.png"></image>
+        <text>第{{groupData[idx]}}组{{myGroup === idx ? '（我的）' : ''}}</text>
+      </view>
+    </block>
+  </view>
+  <view class="group-body">
+    <van-row gutter="10" wx:if="{{curData && curData.members}}">
+      <block wx:for="{{curData.members}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+        <van-col span="6">
+          <view class="group-avatar">
+            <image mode="widthFix" src="{{item.avatar}}"></image>
+            <text>{{item.name}}</text>
+          </view>
+        </van-col>
+      </block>
+    </van-row>
+    <van-divider class="sing-divider" customStyle="border-color: #f5f5f5"/>
+    <view class="group-code" wx:if="{{curData && curData.url}}">
+      <image bind:tap="showImg" data-url="{{curData.url}}" mode="widthFix" src="{{curData.url}}"></image>
+      <view style="color: #ff7386;">请点击二维码预览，长按图片识别进群</view>
+    </view>
+  </view>
+</view>

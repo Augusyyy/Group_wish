@@ -1,0 +1,22 @@
+/* component/member/index.wxss */
+.member-box {
+  .member-bar {
+    display: block;
+    padding: 5px 10px;
+
+    .member-cancel {
+      color: #d0d0d0;
+    }
+
+    .member-confirm {
+      float: right;
+    }
+  }
+  .search-bar {
+    padding: 10px 20px 10px 10px;
+  }
+}
+
+.value-class {
+  flex: none !important;
+}

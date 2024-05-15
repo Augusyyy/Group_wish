@@ -1,0 +1,21 @@
+{
+  "navigationBarTitleText": "少女的心愿",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#ff7b8c",
+  "usingComponents": {
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-overlay": "@vant/weapp/overlay/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-empty": "@vant/weapp/empty/index",
+    "van-button": "@vant/weapp/button/index",
+    "van-divider": "@vant/weapp/divider/index",
+    "van-sticky": "@vant/weapp/sticky/index",
+    "van-row": "@vant/weapp/row/index",
+    "van-col": "@vant/weapp/col/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-popup": "@vant/weapp/popup/index"
+  }
+}

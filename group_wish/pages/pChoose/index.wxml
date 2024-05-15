@@ -1,0 +1,46 @@
+<view class="nav-box">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view wx:if="{{ppList.length === 0}}" style="font-size: 20px;color: #999999;text-align: center;margin-top: 100px;">
+    暂无陪玩
+  </view>
+  <view wx:else class="pp-content">
+    <block wx:for="{{ppList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+      <view style="color: {{item.style.color}};" class="{{item.style.type === 2 ? 'pp-box-1' : 'pp-box'}}" bind:tap="ppSelect" data-idx="{{item.id}}">
+        <image class="{{tools.setPpSelect(selectData, item.id)}}" style="width: 100%;border: solid 3px rgba(0,0,0,0);" src="{{item.style.bgUrl}}" mode="widthFix"></image>
+        <image wx:if="{{tools.setPpSelect(selectData, item.id)}}" class="select-icon" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240103/161605.png" mode="widthFix"></image>
+        <view class="pp-name">{{item.member.name}}</view>
+        <view class="pp-price">单局/<text style="font-weight: 600;">{{item.price}}</text>陪玩币</view>
+        <view class="pp-peak">
+          <view class="pp-title">
+            <image class="pp-icon" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240103/151747.png" mode="widthFix"></image>
+            <text>巅峰赛</text>
+          </view>
+          <view class="pp-info">{{item.peak}}</view>
+        </view>
+        <view class="pp-hero">
+          <view class="pp-title">
+            <image class="pp-icon" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240103/151747.png" mode="widthFix"></image>
+            <text>常用英雄</text>
+          </view>
+          <view class="pp-info">{{item.heroes}}</view>
+        </view>
+        <view class="pp-rank">
+          <view class="pp-title">
+            <image class="pp-icon" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240103/151747.png" mode="widthFix"></image>
+            <text>段位</text>
+          </view>
+          <view class="pp-info">
+            {{item.topLaneInfo ? '对抗路' + item.topLaneInfo + '段 ' : ''}}
+            {{item.botLaneInfo ? '发育路' + item.botLaneInfo + '段 ' : ''}}
+            {{item.midLaneInfo ? '中路' + item.midLaneInfo + '段 ' : ''}}
+            {{item.jungleInfo ? '打野' + item.jungleInfo + '段 ' : ''}}
+            {{item.supportInfo ? '辅助' + item.supportInfo + '段 ' : ''}}
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="pp-btn" wx:if="{{ppList.length > 0}}">
+    <van-button lang="zh_CN" bind:tap="ppOrder" round block>确定</van-button>
+  </view>
+</view>

@@ -1,0 +1,118 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view class="pub-top">
+    <view class="top-title">{{title}}</view>
+    <view class="top-sub">完成订单获得心愿币</view>
+  </view>
+  <form catchsubmit="publishSing" >
+  <view class="pub-box">
+    <van-cell-group>
+      <van-field
+        model:value="{{rank}}"
+        name="rank"
+        readonly
+        class="pub-input"
+        label="老板段位"
+      >
+      </van-field>
+      <van-field
+        model:value="{{time}}"
+        name="time"
+        readonly
+        class="pub-input"
+        label="预约时间"
+      >
+      </van-field>
+      <van-field
+        model:value="{{price}}"
+        name="price"
+        readonly
+        class="pub-input"
+        label="价格 / 局"
+      >
+      </van-field>
+      <van-field
+        model:value="{{games}}"
+        name="games"
+        readonly
+        class="pub-input"
+        label="局数"
+      >
+      </van-field>
+      <van-field
+        model:value="{{status}}"
+        name="status"
+        readonly
+        class="pub-input"
+        label="接单状态"
+      >
+      </van-field>
+    </van-cell-group>
+  </view>
+  <view class="publish-btn">
+    <view wx:if="{{curStatus == 0}}">
+      <van-row gutter="10">
+        <van-col span="12">
+          <view class="d-btn" data-status="-1" bind:tap="ppConfirm">
+            拒绝接单
+          </view>
+        </van-col>
+        <van-col span="12">
+          <view class="d-btn d-confirm" data-status="1" bind:tap="ppConfirm">
+            确认接单
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+    <view wx:if="{{parentStatus == 1 && curStatus == 1}}">
+      <van-row gutter="10">
+        <van-col span="12">
+          <view class="d-btn" data-status="-2" bind:tap="ppDone">
+            放鸽子（心愿币-2）
+          </view>
+        </van-col>
+        <van-col span="12">
+          <view class="d-btn d-confirm" data-status="2" bind:tap="ppDone">
+            完成陪玩
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+  </view>
+  </form>
+</view>
+
+<van-popup show="{{weShow}}" custom-style="border-radius: 15px;overflow-y:visible">
+  <view class="we-body {{popStatus === 1 ? 'we-body-1' : ''}}">
+    <image mode="aspectFill" class="we-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240104/223951.png"></image>
+    <view wx:if="{{popStatus === 1}}" class="we-sub">是否确认{{confirmStr}}</view>
+    <view wx:if="{{popStatus === 2}}" style="display: flex;justify-content: center;{{updateStatus != 2 ? 'margin-top: 20px' : ''}}">
+      <view class="we-sub" style="width: 40vw;">{{confirmStr}}</view>
+    </view>
+    <view class="we-input" wx:if="{{popStatus === 2 && updateStatus == 2}}">
+        <input value="{{inputVal}}" bindinput="inputChange" type="number" placeholder="请输入完成局数" placeholder-style="color: #cccccc"/>
+    </view>
+    <view wx:if="{{popStatus === 1}}">
+      <van-row gutter="10">
+        <van-col span="12">
+          <view class="we-btn-2">
+            <text bind:tap="weClose">取消</text>
+          </view>
+        </van-col>
+        <van-col span="12">
+          <view class="we-btn-1">
+            <text bind:tap="reSubmit">确认</text>
+          </view>
+        </van-col>
+      </van-row>
+    </view>
+    <view wx:else>
+      <view class="we-btn">
+        <text bind:tap="reSubmit">确认</text>
+      </view>
+      <view class="we-close" bind:tap="weClose">
+        <image src="../../images/compose/close.png" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+</van-popup>

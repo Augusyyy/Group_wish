@@ -1,0 +1,71 @@
+<block>
+    <wxs src="../../pages/tools.wxs" module="tools" />
+    <van-overlay show="{{overlayVisiable}}" z-index="10000">
+      <view class="overlay-content">
+        <view class="overlay-body">
+          <view wx:if="{{pageType === 1}}">
+            <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11305298.png" class="overlay-bg"></image>
+            <view class="overlay-title title">满意祈祷石单价<text>8</text>元</view>
+            <view class="overlay-title title-1">提高<text>100%</text>抽奖概率
+              <image src="/images/compose/c_icon.png" style="width: 20px;height: 20px;"></image>
+            </view>
+            <view class="overlay-tips tips">您现在拥有心愿币{{residue}}枚</view>
+            <view wx:if="{{residue < 8}}" class="overlay-tips tips-1">请联系管理员购买宝石</view>
+            <view wx:else="" class="overlay-tips tips-1">是否购买宝石</view>
+            <view class="submit-btn" bind:tap="jeweSubmit">
+              <image src="/images/compose/buy_btn.png" style="width: 100%;height: 100%;"></image>
+              <view wx:if="{{residue < 8}}" class="btn-text">联系管理员</view>
+              <view wx:else="" class="btn-text">购买宝石</view>
+              <image src="/images/compose/close.png" class="close-btn" catch:tap="closeOverlay"></image>
+            </view>
+          </view>
+          <view wx:elif="{{pageType === 2}}">
+            <image src="/images/compose/res_bg.png" class="overlay-bg"></image>
+            <view class="overlay-title res-title">恭喜您抽中</view>
+            <view wx:if="{{giftData}}">
+              <view class="overlay-title res-title-1">{{couponData.faceValue}}%</view>
+              <view class="overlay-title res-title-desc">心愿卡一张</view>
+              <view class="overlay-title res-title-desc" style="top: 130px;">+</view>
+              <image class="res-image" src="{{giftData.url}}" mode="aspectFit"></image>
+              <view class="overlay-title img-desc">{{giftData.levelName}}：{{giftData.name}}</view>
+              <view class="overlay-title card-desc" style="top: 240px;">可在我的账户中进行查看，并联系</view>
+              <view class="overlay-title card-desc-1" style="top: 260px;">管理员兑奖</view>
+            </view>
+            <view wx:elif="{{couponMess}}">
+              <view class="overlay-title res-title-2" style="color: #ff0059;">{{couponData.faceValue}}%</view>
+              <view class="overlay-title res-title-desc-1">心愿卡一张</view>
+              <view class="overlay-title res-title-desc-2">+</view>
+              <view class="overlay-title res-title-desc-3">{{couponMess}}</view>
+              <view class="overlay-title card-desc-mess">请保存截图并联系管理员兑换</view>
+            </view>
+            <view wx:else>
+              <view class="overlay-title card-title">{{couponData.faceValue}}%</view>
+              <view class="overlay-title card-name">心愿卡一张</view>
+              <view class="overlay-title card-desc">可在我的账户中进行查看，积攒<text style="font-size: 15px;">5</text>张心愿卡</view>
+              <view class="overlay-title card-desc-1">即可进行合成，更多礼品等待您</view>
+            </view>
+            <view class="submit-btn" style="bottom: 35px;" bind:tap="closeOverlay">
+              <image src="/images/compose/res_btn.png" style="width: 100%;height: 100%;"></image>
+              <view class="btn-text" style="color: #861f32;">确定</view>
+            </view>
+          </view>
+          <view wx:if="{{pageType === 3}}">
+            <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11305298.png" class="overlay-bg"></image>
+            <view class="overlay-title title">魔法抽奖单价<text>5</text>元</view>
+            <!-- <view class="overlay-title title-1">每天可购买<text>10</text>次
+            </view> -->
+            <!-- 剩余{{payCount}}次 -->
+            <view class="overlay-tips tips">您现在拥有心愿币{{residue}}枚</view>
+            <view wx:if="{{residue < 5}}" class="overlay-tips tips-1">请联系管理员购买宝石</view>
+            <view wx:else="" class="overlay-tips tips-1">是否立即抽奖</view>
+            <view class="submit-btn" bind:tap="jewelLottery">
+              <image src="/images/compose/buy_btn.png" style="width: 100%;height: 100%;"></image>
+              <view wx:if="{{residue < 6}}" class="btn-text">联系管理员</view>
+              <view wx:else="" class="btn-text">立即抽奖</view>
+              <image src="/images/compose/close.png" class="close-btn" catch:tap="closeOverlay"></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </van-overlay>
+</block>

@@ -1,0 +1,3 @@
+.tabbar-wrap{
+    border-top: 1rpx solid #eeeeee;
+}

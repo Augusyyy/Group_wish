@@ -1,0 +1,157 @@
+var IMG_HOST = "https://zld-meidas.oss-cn-hangzhou.aliyuncs.com";//图片前缀
+
+/**
+ * 手机号打码显示
+ * @param phone
+ * @returns {string|string}
+ */
+function maskPhone(phone){
+	var res = phone ? phone.toString() : '';
+	if (res.length) {
+		res = res.substring(0,3) +'****'+ res.substring(7);
+	}
+	return res;
+}
+
+/**
+ * 时间转距离发布多长时间
+ * @param dateStr
+ * @returns {string}
+ */
+function diffTimeByStr(dateStr){
+	var res = '';
+	var reg = getRegExp('-', 'g')
+	var timestamp = getDate(dateStr.replace(reg, '/'));
+	var mistiming = Math.round((Date.now() - timestamp) / 1000);
+	var arr = ['年', '个月', '周', '天', '小时', '分钟', '秒'];
+	var arrn = [31536000, 2592000, 604800, 86400, 3600, 60, 1];
+	for (var i = 0; i < arrn.length; i++) {
+		var inm = Math.floor(mistiming / arrn[i]) ;
+		if (inm > 0 ) {
+			return  res =  inm + arr[i] + '前';
+		}
+	}
+	return  res;
+}
+
+
+function getDigit (integer) {
+	var digit = -1;
+	while (integer >= 1) {
+		digit++;
+		integer = integer / 10;
+	}
+	return digit;
+}
+
+
+function addWan(integer, number, mutiple, decimalDigit) {
+	var digit = getDigit(integer);
+	if (digit > 3) {
+		var remainder = digit % 8;
+		if (remainder >= 5) {   // ‘十万’、‘百万’、‘千万’显示为‘万’
+			remainder = 4;
+		}
+		return Math.round(number / Math.pow(10, remainder + mutiple - decimalDigit)) / Math.pow(10, decimalDigit) + '万';
+	} else {
+		return Math.round(number / Math.pow(10, mutiple - decimalDigit)) / Math.pow(10, decimalDigit);
+	}
+}
+
+/**
+ * 价格转中文显示
+ * @param number
+ * @param decimalDigit
+ * @returns {string|string|*}
+ */
+function toChineseUnit(number, decimalDigit) {
+	decimalDigit = decimalDigit == null ? 2 : decimalDigit;
+	var integer = Math.floor(number);
+	var digit = getDigit(integer);
+	// ['个', '十', '百', '千', '万', '十万', '百万', '千万'];
+	var unit = [];
+	if (digit > 3) {
+		var multiple = Math.floor(digit / 8);
+		if (multiple >= 1) {
+			var tmp = Math.round(integer / Math.pow(10, 8 * multiple));
+			unit.push(addWan(tmp, number, 8 * multiple, decimalDigit));
+			for (var i = 0; i < multiple; i++) {
+				unit.push('亿');
+			}
+			return unit.join('');
+		} else {
+			return addWan(integer, number, 0, decimalDigit);
+		}
+	} else {
+		return number;
+	}
+}
+
+function toOrderStepAtStr(status, steps) {
+	var res = '';
+	if (steps && steps.length) {
+		steps.forEach(function (step) {
+			if (step.status === status) {
+				res = step.at;
+			}
+		});
+	}
+	return res;
+}
+
+function showPrice(price) {
+	return price ? price.toFixed(2) : 0;
+}
+
+//资源前缀处理
+function prefix(url) {
+	if (url && url.indexOf('http') === -1) {
+		return IMG_HOST+url
+	} else {
+		return url
+	}
+}
+//资源前缀处理
+function prefixPress(url) {
+	if (url && url.indexOf('http') === -1) {
+		return IMG_HOST+url+'?x-oss-process=image/resize,w_320/quality,q_50';
+	} else {
+		return url
+	}
+}
+//资源前缀处理
+function prefixPressBanner(url) {
+	if (url && url.indexOf('http') === -1) {
+		return IMG_HOST+url+'?x-oss-process=image/resize,w_640';
+	} else {
+		return url
+	}
+}
+
+/**
+ * 处理品牌名称的括号内容 支持中英文括号
+ * @param categoryName 例：索尼（SONY） 返回：索尼
+ * @returns {*}
+ */
+function subStrCategoryName(categoryName) {
+	var reg = getRegExp('[\(|（][^)]*[\)|）]', 'g');
+	categoryName = categoryName ? categoryName.replace(reg,'') : '';
+	return categoryName;
+}
+
+function setPpSelect(data, id) {
+  return data.indexOf(id) > -1 ? 'select-box' : ''
+}
+
+module.exports = {
+  	maskPhone: maskPhone,
+  	diffTimeByStr:diffTimeByStr,
+	toChineseUnit:toChineseUnit,
+	toOrderStepAtStr:toOrderStepAtStr,
+	showPrice:showPrice,
+	prefix:prefix,
+	prefixPress:prefixPress,
+	prefixPressBanner:prefixPressBanner,
+  subStrCategoryName:subStrCategoryName,
+  setPpSelect: setPpSelect
+};

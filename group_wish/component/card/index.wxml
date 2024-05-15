@@ -1,0 +1,30 @@
+<block>
+    <wxs src="../../pages/tools.wxs" module="tools" />
+    <view class="card-img {{customTop ? 'mt-25' : 'mt-10'}}">
+      <block wx:if="{{showStatus}}">
+        <!-- 未使用 -->
+        <block wx:if="{{status === 0}}">
+          <text class="card-text">{{value}}%</text>
+          <image mode="widthFix" style="width: 100%;display: block;" src="/images/icons/card_bg.png" class="wp-100 d-block"></image>
+        </block>
+        <!-- 已使用，已过期 -->
+        <block wx:else>
+          <text class="card-text card-use-color">{{value}}%</text>
+          <image mode="widthFix" style="width: 100%;display: block;" src="/images/icons/card_use_bg.png" class="wp-100 d-block"></image>
+        </block>
+      </block>
+      <block wx:else>
+        <block wx:if="{{jewel}}">
+          <image mode="widthFix" style="width: 100%;display: block;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11335154.png" class="wp-100 d-block"></image>
+        </block>
+        <block wx:else>
+          <text class="card-text">{{value}}%</text>
+          <image mode="widthFix" style="width: 100%;display: block;" src="/images/icons/card_bg.png" class="wp-100 d-block"></image>
+        </block>
+      </block>
+      <view class="badge" wx:if="{{count >= 0}}">
+        <image mode="widthFix" src="/images/compose/badge.png"></image>
+        <text>{{count}}</text>
+      </view>
+    </view>
+</block>

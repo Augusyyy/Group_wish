@@ -1,0 +1,1 @@
+<rich-text class="detail-content" nodes="{{detailContent}}"></rich-text>

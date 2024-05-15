@@ -1,0 +1,31 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view class="recorder-bg">
+    <view wx:if="{{singId}}">当前曲目：{{singName}}</view>
+    <!-- <view style="width: 100px;height: 200px;">
+      <canvas id="re_wave" type="2d" style="width: 100px;height: 200px;"></canvas>
+    </view> -->
+    <view class="count-down">
+      <view>{{timeStr}}</view>
+    </view>
+    <view class="btn-group">
+      <view class="try-btn" bind:tap="tryAudio">
+        <text>试听</text>
+      </view>
+      <view class="upload-btn" bind:tap="publishSing">
+        <text>上传</text>
+      </view>
+      <image wx:if="{{isStart === 'none'}}" mode="aspectFill" class="start-btn" bind:tap="start" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231214_23483625.png"></image>
+      <image wx:elif="{{isStart === 'start'}}" mode="aspectFill" class="start-btn" bind:tap="stop" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231215_00154328.png"></image>
+      <image wx:elif="{{isStart === 'pause'}}" mode="aspectFill" class="start-btn" bind:tap="resume" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231215_00163635.png"></image>
+    </view>
+    <!-- <van-button lang="zh_CN" bind:tap="start" round block>开始录音</van-button>
+    <van-button lang="zh_CN" bind:tap="pause" round block>暂停</van-button>
+    <van-button lang="zh_CN" bind:tap="resume" round block>继续</van-button>
+    <van-button lang="zh_CN" bind:tap="stop" round block>停止</van-button>
+    <van-button lang="zh_CN" bind:tap="tryAudio" round block>试听</van-button> -->
+  </view>
+  <!-- <view class="sing-btn">
+    <van-button lang="zh_CN" bind:tap="publishSing" round block>上传</van-button>
+  </view> -->
+</view>

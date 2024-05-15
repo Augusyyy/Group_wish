@@ -1,0 +1,41 @@
+<view class="nav-box apply-bg">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <image mode="widthFix" style="width: 100%;position: relative;z-index: 2;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231215_1429420.png"></image>
+  <view class="card-box">
+    <view class="card-header">
+      <div class="p-header"></div>
+      <div class="p-header-text">活跃提交</div>
+    </view>
+    <view class="card-content">
+      <view class="card-title">
+        <image mode="aspectFit" class="img-icon" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231207_1524050.png"></image>
+        <span style="margin-left: 25px;font-size: 15px;">请上传活跃截图</span>
+      </view>
+      <view class="card-sub">审核通过后将发放抽奖次数<span style="color: #ff7386;">1</span>次</view>
+      <view class="card-group">
+        <van-row gutter="10">
+          <block wx:for="{{urlList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+            <van-col span="8">
+              <view class="img-body">
+                <image class="upload-img" mode="aspectFill" src="{{item}}"></image>
+                <image wx:if="{{!auditData || auditData.status === 2}}" class="close" src="/images/icons/close.png" bind:tap="deleteImg" data-key="{{idx}}"></image>
+              </view>
+            </van-col>
+          </block>
+          <van-col span="8">
+            <image bind:tap="chooseImg" mode="aspectFit" class="upload-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231207_15354745.png"></image>
+          </van-col>
+        </van-row>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{auditData && auditData.status === 2}}" class="apply-desc">您的申请已被拒绝：<span>{{auditData.desc}}</span></view>
+  <view class="auth-btn">
+    <view class="van-btn" wx:if="{{auditData && auditData.status === 0}}">
+      审核中
+    </view>
+    <view wx:else class="van-btn" bind:tap="teamApply">
+      提交审核
+    </view>
+  </view>
+</view>

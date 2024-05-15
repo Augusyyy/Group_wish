@@ -1,0 +1,29 @@
+<scroll-view scroll-y="{{true}}" bindscrolltolower="loadReward" style="height: 100vh;">
+  <view class="reward-body">
+    <view class="reward-top">
+      <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231116_15471724.png"  mode="widthFix" class="hh-bg wp-100"></image>
+      <view class="top-title">我的心愿币</view>
+      <view class="top-value">{{myTotal}}</view>
+      <view class="top-bottom">合计（元）</view>
+    </view>
+    <view style="margin-top: 10px;">
+      <div class="p-header"></div>
+      <div class="p-header-text">福利明细</div>
+      
+      <view class="reward-list">
+        <block  wx:for="{{rewardList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+          <view class="reward-column">
+            <view wx:if="{{item.type === 1}}" class="column-text column-icon">福利</view>
+            <view wx:elif="{{item.type === 0}}">
+              <view wx:if="{{item.name === '购买宝石' || item.name === '抽奖'}}" class="column-text column-icon" style="background-color: #00ccff;">使用</view>
+              <view wx:else class="column-text column-icon" style="background-color: #ffae00;">扣除</view>
+            </view>
+            <view class="column-text column-title">{{item.name}}</view>
+            <view wx:if="{{item.type === 1}}" class="column-text column-price">+{{item.value}}元</view>
+            <view wx:elif="{{item.type === 0}}" class="column-text column-price" style="color: #999999;">{{item.value}}元</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</scroll-view>

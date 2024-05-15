@@ -1,0 +1,25 @@
+<view class="home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1126088.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view class="card-box">
+    <view class="card-header">
+      <div class="p-header"></div>
+      <div class="p-header-text">我的心愿卡</div>
+      <div class="p-header-foot" bind:tap="toDetail">
+        前往合成
+        <image class="p-arrow" mode="widthFix" src="/images/icons/p_arrow.png"></image>
+      </div>
+    </view>
+    <view class="card-content">
+      <view wx:if="{{coupons.length === 0}}" class="card-empty">
+        <text>暂无心愿卡</text>
+      </view>
+      <view wx:else>
+        <van-row gutter="10">
+          <van-col span="6" wx:for="{{coupons}}" wx:key="idx" wx:for-index="idx" wx:for-item="item">
+            <card value="{{item.faceValue}}" status="{{item.coupon_status}}" count="-1" show-status="true"></card>
+          </van-col>
+        </van-row>
+      </view>
+    </view>
+  </view>
+</view>

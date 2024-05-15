@@ -1,0 +1,39 @@
+<view class="nav-box">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view class="order-top" wx:if="{{isPP}}">
+    <text class="top-box {{curTab == 1 ? 'top-select' : ''}}" data-tab="1" bind:tap="tabClick">下单</text>
+    <text class="top-box {{curTab == 2 ? 'top-select' : ''}}" data-tab="2" bind:tap="tabClick">接单</text>
+  </view>
+  <scroll-view wx:if="{{orderData.length > 0}}" scroll-y="{{true}}" style="height: 100vh;"  bindscrolltolower="loadList">
+    <!-- style="padding-top: {{isPP ? 60 : 15}}px" -->
+    <view class="order-list">
+      <block wx:for="{{orderData}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+        <view class="order-box" bind:tap="goToDetail" data-id="{{item.id}}">
+          <view class="box-title">
+            <van-row gutter="10">
+              <van-col span="18">
+                <view class="box-time">预约时间：{{item.time}}</view>
+              </van-col>
+              <van-col span="6">
+                <view class="box-status {{curTab == 1 ? orderStatusMap[item.status].style : ppOrderStatusMap[item.status].style}}">{{curTab == 1 ? orderStatusMap[item.status].name : ppOrderStatusMap[item.status].name}}</view>
+              </van-col>
+            </van-row>
+          </view>
+          <view class="box-content">
+            <view wx:if="{{curTab == 1}}">
+              <view>陪玩成员：{{item.pp}}</view>
+              <view style="margin-top: 8px;">预计支付金额：<text style="color: #ff7386;">{{item.totalAmount}}心愿币</text></view>
+            </view>
+            <view wx:else>
+              <view>老板段位：{{item.rank ? item.rank : ''}}</view>
+              <view style="margin-top: 8px;">价格 / 局：<text style="color: #ff7386;">{{item.price}}心愿币</text></view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view wx:else class="order-empty">
+    暂无订单
+  </view>
+</view>

@@ -1,0 +1,131 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);overflow: {{guideShow ? 'hidden' : 'auto'}};">
+    <wxs src="../tools.wxs" module="tools"/>
+
+    <view class="" style="position: relative;">
+      <view wx:if="{{homeSign}}" class="home-sign" catch:tap="goToPage" data-page="sign" id="home_sign" style="top: {{signTop}}px;left: {{signLeft}}px;" catch:touchmove="touchMove">
+        <image id="sign" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240110/162859.png" mode="aspectFill" style="width: 100%;height: 100%;"></image>
+      </view>
+      <view wx:if="{{!userTeam}}" class="home-team" id="home_team" open-type="share" catch:tap="imgView" data-page="apply" style="top: {{teamTop}}px;left: {{teamLeft}}px;" catch:touchmove="touchMove">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240110/151010.png" mode="aspectFill" style="width: 100%;height: 100%;"></image>
+      </view>
+      <view wx:if="{{homeReward}}" class="home-once" catch:tap="homeOnce" id="home_once" style="top: {{onceTop}}px;left: {{onceLeft}}px;" catch:touchmove="touchMove">
+        <image id="reward" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240110/171457.png" mode="aspectFill" style="width: 100%;height: 100%;"></image>
+      </view>
+        <view class="home-header">
+            <image src="/images/home/top_back.png"  mode="widthFix" class="hh-bg wp-100"></image>
+            <view class="hh-content">
+                <view class="hh-header">
+                    <view class="hh-item"></view>
+                </view>
+                <!-- indicator-dots="{{banners.length>1 ? true : false}}" -->
+                <view class="hh-banner">
+                    <swiper
+                            class="home-banner"
+                            indicator-dots="{{true}}"
+                            indicator-active-color="#ffffff"
+                            autoplay="{{true}}"
+                            circular="{{true}}"
+                            next-margin="{{'0px'}}"
+                            interval="{{5000}}"
+                    >
+                        <block wx:for="{{banners}}" wx:for-index="bIdx" wx:for-item="banner" wx:key="id" >
+                            <swiper-item class="hb-item">
+                                <image class="ss-img" mode="aspectFill" src="{{banner.header}}" data-jump="{{banner.content ? true : false}}" data-id="{{banner.id}}" bind:tap="goToBanner"></image>
+                            </swiper-item>
+                        </block>
+                    </swiper>
+                </view>
+            </view>
+        </view>
+        <view class="m-10" style="padding-bottom: 15px;">
+            <van-row gutter="10">
+                <van-col span="12" wx:for="{{activityMap}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+                  <view class="activity-img mt-10">
+                    <!-- <image mode="widthFix" src="{{item}}" class="wp-100 d-block" bind:tap="goToPage" data-page="{{index}}"></image> -->
+                    <image id="{{item.key}}" mode="widthFix" src="{{item.value}}" class="wp-100" bind:tap="goToPage" data-page="{{item.key}}"></image>
+                    </view>
+                </van-col>
+            </van-row>
+        </view>
+    </view>
+</view>
+<van-popup show="{{weShow}}" custom-style="border-radius: 15px;overflow-y:visible;background-color: rgba(0,0,0,0)">
+  <view class="we-body">
+    <image mode="aspectFill" class="we-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240110/173835.png"></image>
+    <view wx:if="{{ userOnce && userOnce.status != 1}}">
+      <view class="we-text text-1">进战队得好礼</view>
+      <view class="we-text text-2">随机获得<text class="text-3">{{userOnce.min}}-{{userOnce.max}}</text>心愿币</view>
+    </view>
+    <view class="we-text text-5" wx:else>已领取<text class="text-3">{{userOnce.price}}</text>心愿币</view>
+    <view class="we-text text-4">邀请新用户可得最高<text class="text-3">{{userOnce.share}}</text>心愿币随机红包</view>
+    <view class="we-btn-group" wx:if="{{userOnce && userOnce.status != 1}}">
+      <van-row gutter="10">
+        <van-col span="12">
+          <button open-type="share" class="we-btn" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240111/100140.png);"></button>
+        </van-col>
+        <van-col span="12">
+          <button catch:tap="onceReward" class="we-btn" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240111/101106.png);"></button>
+        </van-col>
+      </van-row>
+    </view>
+    <view class="we-btn-group-1" wx:else>
+      <van-row gutter="10">
+        <van-col span="24">
+          <button open-type="share" class="we-btn-1" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240111/100140.png);"></button>
+        </van-col>
+      </van-row>
+    </view>
+    <view class="we-close" bind:tap="weClose">
+      <image src="../../images/compose/close.png" mode="aspectFill"></image>
+    </view>
+  </view>
+</van-popup>
+
+<van-popup show="{{guideShow}}" custom-style="overflow-y:visible;width: 100vw;height: 100vh;background-color: rgba(0,0,0,0)">
+  <view style="position: relative;">
+    <view wx:if="{{guideMap[guideIdx]}}">
+      <image src="{{guideMap[guideIdx].image}}" mode="aspectFill" style="position: absolute;top: {{guideMap[guideIdx].top}}px;left: {{guideMap[guideIdx].left}}px;width: {{guideMap[guideIdx].width}}px;height: {{guideMap[guideIdx].height}}px;"></image>
+      <view wx:if="{{guideMap[guideIdx].id === 'draw'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/141937.png" mode="widthFix" style="width: 150px;height: 25px;position: absolute;top: {{guideMap[guideIdx].top - 80}}px;left: {{guideMap[guideIdx].left +10}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/103019.png" mode="widthFix" style="width: 25px;position: absolute;top: {{guideMap[guideIdx].top - 50}}px;left: {{guideMap[guideIdx].left + 90}}px;"></image>
+      </view>
+      <view wx:if="{{guideMap[guideIdx].id === 'compose'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/142254.png" mode="widthFix" style="width: 130px;height: 25px;position: absolute;top: {{guideMap[guideIdx].top -110}}px;left: {{guideMap[guideIdx].left + 20}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/103019.png" mode="widthFix" style="width: 25px;position: absolute;top: {{guideMap[guideIdx].top - 50}}px;left: {{guideMap[guideIdx].left + 90}}px;"></image>
+      </view>
+      <view wx:if="{{guideMap[guideIdx].id === 'activity'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/112140.png" mode="widthFix" style="width: 140px;height: 25px;position: absolute;top: {{guideMap[guideIdx].top - 80}}px;left: {{guideMap[guideIdx].left + 20}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/103019.png" mode="widthFix" style="width: 25px;position: absolute;top: {{guideMap[guideIdx].top - 50}}px;left: {{guideMap[guideIdx].left + 90}}px;"></image>
+      </view>
+      <view wx:if="{{guideMap[guideIdx].id === 'pp'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/142455.png" mode="widthFix" style="width: 110px;height: 25px;position: absolute;top: {{guideMap[guideIdx].top - 120}}px;left: {{guideMap[guideIdx].left + 20}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/103019.png" mode="widthFix" style="width: 25px;position: absolute;top: {{guideMap[guideIdx].top - 50}}px;left: {{guideMap[guideIdx].left + 90}}px;"></image>
+      </view>
+      <view wx:if="{{guideMap[guideIdx].id === 'active'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/143015.png" mode="widthFix" style="width: 125px;height: 25px;position: absolute;top: {{guideMap[guideIdx].top - 120}}px;left: {{guideMap[guideIdx].left + 20}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/103019.png" mode="widthFix" style="width: 25px;position: absolute;top: {{guideMap[guideIdx].top - 60}}px;left: {{guideMap[guideIdx].left + 90}}px;"></image>
+      </view>
+      <view wx:if="{{guideMap[guideIdx].id === 'kk'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/142703.png" mode="widthFix" style="width: 160px;height: 25px;position: absolute;top: {{guideMap[guideIdx].top - 90}}px;left: {{guideMap[guideIdx].left + 20}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/103019.png" mode="widthFix" style="width: 25px;position: absolute;top: {{guideMap[guideIdx].top - 50}}px;left: {{guideMap[guideIdx].left + 90}}px;"></image>
+      </view>
+      <view wx:if="{{guideMap[guideIdx].id === 'welfare'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/142804.png" mode="widthFix" style="width: 135px;height: 25px;position: absolute;top: {{guideMap[guideIdx].top - 90}}px;left: {{guideMap[guideIdx].left + 20}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/103019.png" mode="widthFix" style="width: 25px;position: absolute;top: {{guideMap[guideIdx].top - 50}}px;left: {{guideMap[guideIdx].left + 90}}px;"></image>
+      </view>
+      <view wx:if="{{guideMap[guideIdx].id === 'reward'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/113213.png" mode="widthFix" style="width: 130px;height: 80px;position: absolute;top: {{guideMap[guideIdx].top + 15}}px;left: {{guideMap[guideIdx].left - 180}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/112935.png" mode="widthFix" style="width: 40px;position: absolute;top: {{guideMap[guideIdx].top + 20}}px;left: {{guideMap[guideIdx].left - 40}}px;"></image>
+      </view>
+      <view wx:if="{{guideMap[guideIdx].id === 'sign'}}">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/113511.png" mode="widthFix" style="width: 95px;height: 80px;position: absolute;top: {{guideMap[guideIdx].top + 15}}px;left: {{guideMap[guideIdx].left - 150}}px;"></image>
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240112/113351.png" mode="widthFix" style="width: 40px;position: absolute;top: {{guideMap[guideIdx].top + 40}}px;left: {{guideMap[guideIdx].left - 40}}px;"></image>
+      </view>
+    </view>
+    <view class="guide-btn" bind:tap="guideClose">{{guideIdx === guideMap.length - 1 ? '知道了' : '下一步'}}</view>
+  </view>
+</van-popup>
+
+                          <!-- <navigator url="/pages/{{index}}/index">
+                            
+                        </navigator> -->

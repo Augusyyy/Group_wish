@@ -1,0 +1,33 @@
+<view class="logo-wrap">
+    <mp-navigation-bar background="transparent" extClass="nav-bar__custom">
+    </mp-navigation-bar>
+    <image class="auth-bg" mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231116_15481321.png"></image>
+
+    <view class="auth-btn">
+        <!-- <van-button lang="zh_CN" open-type="getPhoneNumber" bindgetphonenumber="onGotPhoneNumber" loading="{{loading}}" round block>手机号快捷登录</van-button> -->
+        <van-button type="primary" lang="zh_CN" bind:tap="getWxUserProfile" loading="{{loading}}" round block>此功能需要您授权登录</van-button>
+
+        <van-button lang="zh_CN" bind:tap="loginCancel" round block>取消登录</van-button>
+        
+    </view>
+
+    <!-- <van-cell title="头像" is-link center>
+            <button class="avatar-wrap fr" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+                <image class="avatar" mode="widthFix" src="{{avatarUrl ? avatarUrl : '/images/avatar.png'}}"></image>
+            </button>
+        </van-cell> -->
+
+        <!-- <button open-type="chooseAvatar" bind:chooseAvatar="onChooseAvatar">点击授权登录</button> -->
+        <!-- <image mode="widthFix" src="{{avatarUrl}}"></image> -->
+
+        <!-- <button open-type="chooseAvatar" bind:chooseAvatar="onChooseAvatar"> -->
+                <!-- <image class="avatar" mode="widthFix" src="{{avatarUrl ? avatarUrl : '/images/avatar.png'}}"></image> -->
+            <!-- </button> -->
+        <!-- <button open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"> -->
+          <!-- 点击授权登录 -->
+                <!-- <image class="avatar" mode="widthFix" src="{{avatarUrl ? avatarUrl : '/images/avatar.png'}}"></image> -->
+            <!-- </button> -->
+            <!-- <button open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar"> -->
+                <!-- <image class="avatar" mode="widthFix" src="{{avatarUrl ? avatarUrl : '/images/avatar.png'}}"></image> -->
+            <!-- </button> -->
+</view>

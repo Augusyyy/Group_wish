@@ -1,0 +1,3 @@
+<view class="tabbar-wrap">
+    <mp-tabbar list="{{list}}" current="{{selected}}" bindchange="onTabChange"></mp-tabbar>
+</view>

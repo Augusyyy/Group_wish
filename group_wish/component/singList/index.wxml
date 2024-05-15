@@ -1,0 +1,63 @@
+<view class="sing-box" wx:if="{{!isDelete}}">
+  <view class="sing-img">
+    <image src="{{avatar}}"></image>
+    <view class="sing-part">{{memberName}}</view>
+  </view>
+  <view class="sing-content {{detail ? 'detail-content' : ''}}">
+    <view class="sing-name">{{name}}</view>
+    <view class="sing-price" catch:tap="playAudio" data-url="{{url}}">
+      <van-loading wx:if="{{play === 'loading'}}" size="15px"></van-loading>
+      <view wx:elif="{{play === 'start'}}">
+        <van-icon name="pause" />
+        暂停
+      </view>
+      <view wx:else>
+        <van-icon name="play" />
+        播放
+      </view>
+      <view class="sing-time" wx:if="{{duration}}">
+        <van-count-down use-slot bind:change="countChange" class="count-down-{{curId}}" auto-start="{{false}}" time="{{ duration }}">
+          <text class="sing-time-text">{{timeData.min}}:</text>
+          <text class="sing-time-text">{{timeData.sec}}</text>
+        </van-count-down>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{!detail}}" class="sing-like" catch:tap="likeSong">
+    <image wx:if="{{like === 1}}" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20231221/231337.png" mode="widthFix"></image>
+    <image wx:else src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20231221/233456.png" mode="widthFix"></image>
+    <text style="margin-left: 5px;">{{likeCount}}</text>
+  </view>
+  <view wx:if="{{kId ? status === 0 && myId === kId && myId !== uploadId : status === 0 && myId !== uploadId}}" class="sing-btn-box {{detail ? '' : 'like-re'}}" catch:tap="rewardFun">
+      <view class="sing-btn">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231214_23264758.png"></image>
+        <view class="sing-text">打赏</view>
+      </view>
+  </view>
+  <view wx:if="{{!kId && myId === uploadId}}" style="right: 15px;" class="sing-btn-box {{detail ? '' : 'like-re'}}" catch:tap="kDelete" data-id="{{curId}}">
+    <view class="sing-btn delete-btn">
+        <view class="sing-text">删除</view>
+      </view>
+  </view>
+  <view class="sing-create">{{createdAt}}</view>
+</view>
+
+<van-popup show="{{weShow}}" custom-style="border-radius: 15px;overflow-y:visible">
+  <view class="we-body">
+    <image mode="aspectFill" class="we-img" src="{{avatar}}"></image>
+    <view class="we-name">{{memberName}}</view>
+    <view class="we-sub">你喜欢这首歌么？</view>
+    <view class="we-input">
+      <input value="{{inputVal}}" bindinput="inputChange" type="digit" placeholder="请输入打赏心愿币" placeholder-style="color: #cccccc" disabled="{{weType === 2 ? true : false}}"/>
+    </view>
+    <view class="we-btn">
+      <text bind:tap="reSubmit">确认打赏</text>
+    </view>
+    <view wx:if="{{weType === 3}}" class="we-re">您的心愿币余额：{{xyb}}</view>
+    <view wx:if="{{weType === 2}}" class="we-re">固定打赏{{amount}}心愿币，剩余次数{{xyb}}</view>
+    <view wx:if="{{weType === 1}}" class="we-re">剩余打赏余额：{{residue}}</view>
+    <view class="we-close" bind:tap="weClose">
+      <image src="../../images/compose/close.png" mode="aspectFill"></image>
+    </view>
+  </view>
+</van-popup>

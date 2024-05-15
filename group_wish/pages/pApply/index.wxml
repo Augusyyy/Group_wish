@@ -1,0 +1,124 @@
+<view class="nav-box apply-bg">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <image mode="widthFix" style="width: 100%;position: relative;z-index: 2;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20240102/151127.png"></image>
+  <form bindsubmit="ppSubmit">
+    <view class="card-box">
+    <view class="card-header">
+      <div class="p-header"></div>
+      <div class="p-header-text">上传信息</div>
+    </view>
+    <view class="card-content">
+        <van-cell-group>
+          <block wx:for="{{positions}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+            <van-field
+              model:value="{{item.value}}"
+              name="{{item.key}}"
+              clearable
+              label="{{item.name}}"
+              placeholder="请输入{{item.name}}段位"
+              maxlength="20"
+              input-align="right"
+            >
+              <view slot="right-icon">
+                段
+              </view>
+            </van-field>
+          </block>
+          <view class="pp-url">
+            <text class="text-color">请上传段位图</text>
+            <view style="margin-top: 15px;">
+              <van-row gutter="10">
+                <block wx:for="{{positionUrls}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+                  <van-col span="8">
+                    <view class="img-body">
+                      <image class="upload-img" mode="aspectFit" src="{{item}}"></image>
+                      <image class="close" src="/images/icons/close.png" bind:tap="deleteImg" data-key="{{idx}}" data-field="position"></image>
+                    </view>
+                  </van-col>
+                </block>
+                <van-col span="8">
+                  <image bind:tap="chooseImage" data-field="position" mode="widthFix" class="upload-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231207_15354745.png"></image>
+                </van-col>
+              </van-row>
+            </view>
+          </view>
+          <van-field
+            model:value="{{heroes}}"
+            name="heroes"
+            clearable
+            label="擅长英雄"
+            placeholder="请输入擅长英雄，多个用逗号分隔"
+            class="pub-input"
+            maxlength="40"
+            input-align="right"
+          >
+          </van-field>
+          <view class="pp-url">
+            <text class="text-color">请上传英雄主页图</text>
+            <view style="margin-top: 15px;">
+              <van-row gutter="10">
+                <block wx:for="{{heroUrls}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+                  <van-col span="8">
+                    <view class="img-body">
+                      <image class="upload-img" mode="aspectFit" src="{{item}}"></image>
+                      <image class="close" src="/images/icons/close.png" bind:tap="deleteImg" data-key="{{idx}}" data-field="hero"></image>
+                    </view>
+                  </van-col>
+                </block>
+                <van-col span="8">
+                  <image bind:tap="chooseImage" data-field="hero" mode="widthFix" class="upload-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231207_15354745.png"></image>
+                </van-col>
+              </van-row>
+            </view>
+          </view>
+          <van-field
+            model:value="{{peak}}"
+            name="peak"
+            clearable
+            label="巅峰赛最高分"
+            placeholder="请输入巅峰赛最高分"
+            class="pub-input"
+            maxlength="6"
+            type="number"
+            input-align="right"
+          >
+          </van-field>
+          <view class="pp-url">
+            <text class="text-color">请上传巅峰赛截图</text>
+            <view style="margin-top: 15px;">
+              <van-row gutter="10">
+                <block wx:for="{{peakUrl}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+                  <van-col span="8">
+                    <view class="img-body">
+                      <image class="upload-img" mode="aspectFit" src="{{item}}"></image>
+                      <image class="close" src="/images/icons/close.png" bind:tap="deleteImg" data-key="{{idx}}" data-field="peak"></image>
+                    </view>
+                  </van-col>
+                </block>
+                <van-col span="8">
+                  <image bind:tap="chooseImage" data-field="peak" mode="widthFix" class="upload-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231207_15354745.png"></image>
+                </van-col>
+              </van-row>
+            </view>
+          </view>
+          <van-field
+            model:value="{{price}}"
+            name="price"
+            clearable
+            label="单局价格"
+            placeholder="请输入单局价格"
+            class="pub-input"
+            maxlength="4"
+            type="number"
+            input-align="right"
+          >
+          </van-field>
+        </van-cell-group>
+      </view>
+  </view>
+  <view class="auth-btn">
+    <van-button wx:if="{{ppAudit === 0}}" lang="zh_CN" round block>审核中</van-button>
+    <van-button wx:if="{{ppAudit === 99 || ppAudit === 2}}" lang="zh_CN" formType="submit" bind:tap="ppSubmit" round block>提交审核</van-button>
+  </view>
+  </form>
+</view>

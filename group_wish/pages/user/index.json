@@ -1,0 +1,15 @@
+{
+  "navigationBarTitleText": "完善信息",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#ff7b8c",
+	"usingComponents": {
+		"van-uploader": "@vant/weapp/uploader/index",
+		"van-field": "@vant/weapp/field/index",
+		"van-empty": "@vant/weapp/empty/index",
+		"van-button": "@vant/weapp/button/index",
+		"van-row": "@vant/weapp/row/index",
+		"van-col": "@vant/weapp/col/index",
+		"van-cell-group": "@vant/weapp/cell-group/index",
+		"van-cell": "@vant/weapp/cell/index"
+	}
+}

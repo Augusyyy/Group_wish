@@ -1,0 +1,39 @@
+<scroll-view scroll-y="{{true}}" class="fight-view"  bindscrolltolower="loadList">
+<view class="bg-grey nav-box">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+
+  <image mode="widthFix" style="width: 100%;position: relative;z-index: 2;" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11542322.jpg"></image>
+
+  <view class="fight-body" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231121_14523980.png);">
+    <van-row style="display: block;height: 205px;">
+      <van-col span="8" class="top-body">
+        <image class="top2-img" mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11560457.png"></image>
+        <avatar wx:if="{{top2}}" top="2" avatar-url="{{top2.avatar}}" name="{{top2.name}}" fight="{{top2.fight}}"></avatar>
+      </van-col>
+      <van-col span="8" class="top-body">
+        <image mode="widthFix" class="top1-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11560158.png"></image>
+        <avatar wx:if="{{top1}}" top="1" avatar-url="{{top1.avatar}}" name="{{top1.name}}" fight="{{top1.fight}}"></avatar>
+      </van-col>
+      <van-col span="8" class="top-body">
+        <image mode="widthFix" class="top3-img" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231117_11560826.png"></image>
+        <avatar wx:if="{{top3}}" top="3" avatar-url="{{top3.avatar}}" name="{{top3.name}}" fight="{{top3.fight}}"></avatar>
+      </van-col>
+    </van-row>
+    <!-- <image style="margin-top: 200px;" class="fight-top" mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231116_15242449.png"></image> -->
+    <image class="fight-bar" mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231116_15340411.png"></image>
+    <view style="padding: 0 20rpx 20rpx 20rpx;">
+        <block  wx:for="{{topList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+          <view class="top-list">
+            <view class="rank">{{item.rank}}</view>
+            <avatar avatar-url="{{item.avatar}}"></avatar>
+            <view class="name">{{item.name}}</view>
+            <view class="fight">
+              <view class="f-left">战力</view>
+              <view class="f-right">{{item.fight}}</view>
+            </view>
+          </view>
+        </block>
+    </view>
+  </view>
+</view>
+</scroll-view>

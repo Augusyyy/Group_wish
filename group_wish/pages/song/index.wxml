@@ -1,0 +1,26 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view class="order-top">
+    <text class="top-box {{curTab == 1 ? 'top-select' : ''}}" data-tab="1" bind:tap="tabClick">全部歌曲</text>
+    <text class="top-box {{curTab == 2 ? 'top-select' : ''}}" data-tab="2" bind:tap="tabClick">我的</text>
+  </view>
+  <view wx:if="{{singList.length > 0}}">
+    <scroll-view scroll-y="{{true}}" style="height: 100vh;"  bindscrolltolower="loadList">
+      <view class="sing-list" wx:if="{{singList.length > 0}}">
+        <block  wx:for="{{singList}}" wx:for-item="item" wx:for-index="idx" wx:key="idx">
+          <sing-list avatar="{{item.member.avatar}}" member-name="{{item.member.name}}" name="{{item.name}}" url="{{item.url}}" cur-id="{{item.id}}" status="{{0}}" play="{{item.play}}" reward-type="{{2}}" bind:playAudio="playAudio" data-idx="{{idx}}" data-url="{{item.url}}" detail="{{false}}" we-type="{{3}}" duration="{{item.duration}}" like-count="{{item.likeCount}}" like="{{item.like}}" created-at="{{item.createdAt}}" my-id="{{myId}}" upload-id="{{item.member.id}}"></sing-list>
+          </block>
+      </view>
+      <view wx:else>
+        <image class="sing-empty" mode="widthFix" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/zz/20231220/230400.png"></image>
+      </view>
+    </scroll-view>  
+  </view>
+  <view wx:else class="card-empty">
+    <text>暂无歌单</text>
+  </view>
+  <view class="sing-btn">
+    <van-button lang="zh_CN" bind:tap="gotoRecorder" round block>我要K歌</van-button>
+  </view>
+</view>
+<k-pop k-show="{{kShow}}" cur-id="{{0}}" bind:closeEvent="closeEvent"></k-pop>

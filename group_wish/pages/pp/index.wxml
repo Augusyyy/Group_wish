@@ -1,0 +1,14 @@
+<view class="bg-grey nav-box home-bg" style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <view class="page-title">心愿陪玩</view>
+  <view class="sub-title">游戏大神陪你玩</view>
+  <view class="view-list">
+    <block wx:for="{{viewData}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+      <view class="view-img">
+        <navigator url="/pages/{{index}}/index" style="border-radius: 20px;padding-top: 10px;">
+          <image mode="widthFix" src="{{item}}" class="wp-100 d-block"></image>
+        </navigator>
+      </view>
+    </block>
+  </view>
+</view>

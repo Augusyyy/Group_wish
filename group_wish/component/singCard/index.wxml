@@ -1,0 +1,30 @@
+<view class="sing-box {{showBtn ? 'sing-box-top' : ''}}" bind:tap="goToDetail">
+  <view class="sing-img">
+    <image src="{{avatar}}"></image>
+  </view>
+  <view class="sing-content">
+    <view class="sing-name {{showBtn && curTime < endTimestamp && isMe ? 'sing-part-top' : '' }}">{{name}}</view>
+    <view class="sing-part {{showBtn && curTime < endTimestamp && isMe ? 'sing-part-top' : '' }}">参与人：{{partString}}</view>
+    <view class="sing-price">
+      <image mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231214_17575093.png"></image>
+      <span>{{rewardType[type]}}</span>
+      <span class="h-line"></span>
+      <span wx:if="{{type === 1}}">剩余：<span class="sing-amount">￥{{residue}}</span></span>
+      <span wx:if="{{type === 2}}">剩余：<span class="sing-amount">{{residue / amount}}</span>次</span>
+    </view>
+  </view>
+  <view wx:if="{{showBtn}}">
+    <view wx:if="{{curTime < endTimestamp  && isMe}}" class="sing-btn-box">
+      <view class="sing-btn">
+        <image src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202312/20231214_22340363.png"></image>
+        <view data-id="{{curId}}" data-name="{{name}}" catch:tap="goToRecorder" class="sing-text">我要唱</view>
+      </view>
+    </view>
+  </view>
+  <van-divider class="sing-divider" customStyle="border-color: #f5f5f5;margin-top: 50px"/>
+  <view class="sing-bottom">
+    发布人：<span>{{member}}</span>
+  </view>
+  <view class="sing-time">{{endTime}}截止</view>
+</view>
+<k-pop k-show="{{kShow}}" cur-id="{{curId}}" bind:closeEvent="closeEvent"></k-pop>

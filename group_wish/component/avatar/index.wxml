@@ -1,0 +1,28 @@
+<block>
+    <wxs src="../../pages/tools.wxs" module="tools" />
+    <view class="top-avatar">
+      <view wx:if="{{top}}" class="top-body">
+        <view wx:if="{{top == 1}}" class="top1">
+          <image class="avatar" src="{{avatarUrl}}"></image>
+          <view class="user-name">{{name}}</view>
+          <text class="user-fight">{{fight}}</text>
+          <image class="top-hat" mode="widthFix" src="/images/top1.png" style="width: 20px;border: none;"></image>
+        </view>
+        <view wx:elif="{{top == 2}}" class="top2">
+          <image class="avatar" src="{{avatarUrl}}"></image>
+          <view class="user-name">{{name}}</view>
+          <text class="user-fight">{{fight}}</text>
+          <image class="top-hat" mode="widthFix" src="/images/top2.png" style="width: 20px;border: none;"></image>
+        </view>
+        <view wx:elif="{{top == 3}}" class="top3">
+          <image class="avatar" src="{{avatarUrl}}"></image>
+          <view class="user-name">{{name}}</view>
+          <text class="user-fight">{{fight}}</text>
+          <image class="top-hat" mode="widthFix" src="/images/top3.png" style="width: 20px;border: none;"></image>
+        </view>
+      </view>
+      <view wx:else>
+        <image class="avatar avatar-list" src="{{avatarUrl}}"></image>
+      </view>
+    </view>
+</block>

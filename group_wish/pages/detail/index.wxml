@@ -1,0 +1,14 @@
+<!-- style="background-image: url(https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png);" -->
+<!-- home-bg -->
+<view class="bg-grey nav-box" style="padding: 15px;">
+  <wxs src="../../pages/tools.wxs" module="tools" />
+  <image class="auth-bg" mode="aspectFill" src="https://zld-meidas.oss-cn-hangzhou.aliyuncs.com/upload/medias/202311/20231102_1124341.png"></image>
+  <!-- <view class="detail-content">{{activitData.content}}</view> -->
+  <rich-text class="detail-content" nodes="{{activitData.content}}"></rich-text>
+  <view wx:if="{{cS === 'other'}}">
+    <view class="auth-btn" wx:if="{{activitData.type === 1}}">
+    <van-button wx:if="{{activitData.joinStatus === 0}}" lang="zh_CN" bind:tap="activityJoin" round block>点击报名</van-button>
+    <van-button wx:else lang="zh_CN" data-id="{{activitData.id}}" bind:tap="goToGroup" round block>查看分组</van-button>
+  </view>
+  </view>
+</view>
